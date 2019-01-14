@@ -38,7 +38,7 @@ module.exports = function(grunt) {
         dest: 'public/javascripts/main.js'
       },
       css: {
-        src: ['assets/stylesheets/*.css'],
+        src: ['assets/stylesheets/css/*.css'],
         dest: 'public/stylesheets/style.css'
       }
     },
@@ -54,6 +54,21 @@ module.exports = function(grunt) {
       css: {
         src: '<%= concat.css.dest %>',
         dest: 'public/stylesheets/style.min.css'
+      }
+    },
+
+    sass: {                              
+      comp: {                            
+        options: {                       
+          trace: true
+        },
+        files: [{
+          expand: true,
+          cwd: 'assets/stylesheets/scss',
+          src: '*.scss',
+          dest: 'assets/stylesheets/css',
+          ext: '.css'
+        }]
       }
     },
 
@@ -92,6 +107,10 @@ module.exports = function(grunt) {
       dev: {
         files: 'assets/*/*.*',
         tasks: ['default']
+      },
+      scss: {
+        files: 'assets/stylesheets/scss/*.scss',
+        tasks: ['default']
       }
     }
   });
@@ -100,12 +119,18 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
 
   // Register tasks
-  grunt.registerTask('default', ['js','css','data']);
+  grunt.registerTask('default', ['assets']);
+  grunt.registerTask('fullBuild', ['assets', 'ext']);
   grunt.registerTask('dist', []);
-  grunt.registerTask('js', ['concat:js','uglify:js']);
+
+  grunt.registerTask('scss', ['sass:comp', 'css']);
   grunt.registerTask('css', ['concat:css','cssmin:css']);
+
+  grunt.registerTask('assets', ['js','scss','data', 'fonts']);
+  grunt.registerTask('js', ['concat:js','uglify:js']);
   grunt.registerTask('data', ['concat:data']);
   grunt.registerTask('fonts', ['copy:fonts']);
+
   grunt.registerTask('ext', ['copy:ext','concat:extJS','concat:extCSS']);
   
 
