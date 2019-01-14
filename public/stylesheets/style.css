@@ -1,0 +1,208 @@
+
+a{
+	color: #00B7FF;
+}
+
+
+
+.tileWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile {
+	position: relative;
+	flex-basis: calc(7.6% );
+	box-sizing: border-box;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+
+	text-align: center;
+	opacity: 0.6;
+	box-shadow: inset 0px 0px 50px rgba(0,0,0,0.9);
+	
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+.tile::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.tileCont {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+#treeTbl{
+	background-color: #00F;
+}
+
+#treeTbl td{
+	
+
+}
+
+.vit{	
+	background-color: #ec1313; 
+}
+
+.vitPre{	
+	background-color: #b81414; 
+}
+
+.dex{	
+	background-color: #ff4000; 
+}
+
+.dexPre{	
+	background-color: #cc3300; 
+}
+
+.lootPre{	
+	background-color: #ff794d; 
+}
+
+.mp{	
+	background-color: #ffff80; 
+}
+
+.mpPre{	
+	background-color: #ebeb47; 
+}
+
+.eva{	
+	background-color: #c9fa38; 
+}
+
+.evaPre{	
+	background-color: #ace600; 
+}
+
+.spd{	
+	background-color: #4dbd28; 
+}
+
+.spdPre{	
+	background-color: #418a28; 
+}
+
+.hp{	
+	background-color: #30e8e8; 
+}
+
+.hpPre{	
+	background-color: #14b8b8; 
+}
+
+.wis{	
+	background-color: #2559f4; 
+}
+
+.wisPre{	
+	background-color: #1236a1; 
+}
+
+.rof{	
+	background-color: #cc667f; 
+}
+
+.atk{	
+	background-color: #e830e8; 
+}
+
+.atkPre{	
+	background-color: #c91dc9; 
+}
+
+.def{	
+	background-color: #cccccc; 
+}
+
+.defPre{	
+	background-color: #a6a6a6; 
+}
+
+
+.start{
+
+	background: url("../img/looter.jpg") no-repeat center; 
+			-webkit-background-size: contain;
+		-moz-background-size: contain;
+		-o-background-size: contain;
+		background-size: contain;
+}
+
+
+
+
+
+
+
+.tile:hover {
+	opacity: .9;
+}
+
+.activeNode{
+	opacity: 1;
+}
+
+
+
+
+
+
+
+
+body{
+	background-color: #cdc;
+}
+
+.container{
+	background-color: #fff;
+}
+
+#mainCont{
+  padding: 30px;
+}
+
+.navbar{
+	margin:0;
+}
+
+.navbar.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.nav-wrapper
+{
+    min-height:50px;
+}
+
+#header{
+	height:400px;
+	min-height: 400px;
+}
+#headerImg{
+	height: 500px;
+	background: url("https://jovinacooksitalian.files.wordpress.com/2015/02/lighter6.jpg") no-repeat center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+}
+
+
+
+
+

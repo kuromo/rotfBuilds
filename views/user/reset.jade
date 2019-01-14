@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+	label#usrPwdLbl pw
+	input#usrPwd.input(type="password")
+	br
+	label#pwdRepLbl rep pw
+	input#pwdRep.input(type="password")
+	br
+	button#resetBtn(onClick="reset()") reset

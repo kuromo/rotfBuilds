@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	#test
+		h1 
+			span.ptCount #{ points } 
+			span /82
+		.tileWrap
+			each row, rId in tree
+				each col, cId in row
+					div(class="tile #{ col.type }" data-id="#{ rId+cId }")
+						.tileCont 
+							p #{ col.type }
+							p #{ col.val }
+
+
+
+
+
+
+
+
+
+
+
+
+//		table.table#treeTbl
+//			each row in tree
+//				tr
+//				each col in row
+//					td(class="#{ col.type }") #{ col.val }

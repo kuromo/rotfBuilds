@@ -1,0 +1,44 @@
+doctype html
+
+head
+	title #{hTitle}
+
+	link(href="http://localhost:3000/css/ext.css", rel="stylesheet") 
+	link(href="http://localhost:3000/css/style.css", rel="stylesheet")
+
+	script(src="http://localhost:3000/js/ext.js")
+	script(src="http://localhost:3000/js/main.js")
+
+body
+	#header.row(data--75-end="opacity:1;", data--101-end="opacity:0.5;")
+		#headerImg.row(data-0="transform: translateY(-100px);", data--100-end="transform: translateY(0px);")          
+
+	.nav-wrapper
+		.navbar.navbar-inverse.affix(data-spy="affix", data-offset-top="200")
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-collapse-main")
+						span.sr-only #{toggleTxt}
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a#navLogo.navbar-brand(href="#")
+						img#navLogoImg.hidden(src="img/logo.png", alt="logo")
+				#navbar-collapse-main.collapse.navbar-collapse
+					ul.nav.navbar-nav.navbar-right
+						li: a(href="#" onclick="renderImport()") #{nav1}
+						li: a(href="#" onclick="") #{nav2}
+
+	.container
+		if messages.error
+			.alert.alert-danger
+				div= messages.error
+		if messages.info
+			.alert.alert-info
+				div= messages.info
+		if messages.success
+			.alert.alert-success
+				div= messages.success
+
+	#mainCont.container
+		block content

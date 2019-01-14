@@ -1,0 +1,6 @@
+extends layout
+
+block content
+	#test
+		each value, index in links
+			p  #[a(href= value.link)=value.desc] 

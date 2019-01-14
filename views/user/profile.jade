@@ -1,0 +1,7 @@
+extends profileFrame
+
+block profRightCont
+	p this is your profile
+
+	each value, index in links
+			p  #[a(href= value.link)=value.desc] 
