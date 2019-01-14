@@ -2,7 +2,10 @@
     "name": "rotfBuilds",
     "author": "kuromo",
     "version": "0.0.0",
-    "licenses": ["l1","l2"],
+    "licenses": [
+        "l1",
+        "l2"
+    ],
     "private": true,
     "scripts": {
         "start": "node ./bin/www"
@@ -10,6 +13,7 @@
     "dependencies": {
         "async": "^2.6.1",
         "body-parser": "^1.18.3",
+        "bootstrap": "^4.2.1",
         "connect-mongo": "^2.0.3",
         "cookie-parser": "~1.4.3",
         "debug": "^2.6.9",
@@ -24,10 +28,13 @@
         "node-sass-middleware": "^0.11.0",
         "nodemailer": "^4.7.0",
         "serve-favicon": "^2.5.0",
+        "skrollr": "^0.6.26",
         "uuid": "^3.3.2"
     },
     "devDependencies": {
         "grunt-contrib-concat": "^1.0.1",
+        "grunt-contrib-copy": "^1.0.0",
+        "grunt-contrib-cssmin": "^3.0.0",
         "grunt-contrib-jshint": "^2.0.0",
         "grunt-contrib-uglify": "^4.0.0",
         "grunt-contrib-watch": "^1.1.0",

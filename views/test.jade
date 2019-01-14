@@ -1,7 +1,6 @@
 doctype html
 
 head
-	title #{hTitle}
 
 
 	script(src="https://code.jquery.com/jquery-3.3.1.min.js")
@@ -9,19 +8,13 @@ head
 	link(href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css", rel="stylesheet") 
 
 	link(href="http://localhost:3000/css/ext.css", rel="stylesheet") 
-	link(href="http://localhost:3000/css/style.css", rel="stylesheet")
+	link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css", rel="stylesheet") 
 
 	script(src="http://localhost:3000/js/ext.js")
-	script(src="http://localhost:3000/js/main.js")
 
-	script(src="http://localhost:3000/json/data.json")
+
 
 body
-	#header.row(data--75-end="opacity:1;", data--101-end="opacity:0.5;")
-		#headerImg.row(data-0="transform: translateY(-100px);", data--100-end="transform: translateY(0px);")          
-
-
-
 	nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
 		a.navbar-brand(href="#") Navbar
 		button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation")
@@ -29,39 +22,20 @@ body
 
 		#navbarsExampleDefault.collapse.navbar-collapse
 			ul.navbar-nav.mr-auto 
+
 				li.nav-item.active
 					a.nav-link(href="#") Home
+
 				li.nav-item
 					a.nav-link(href="#") Link
 				li.nav-item
 					a.nav-link.disabled(href="#") Disabled
 				li.nav-item.dropdown
-					a.nav-link.dropdown-toggle(href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Dropdown
+					a.nav-link.dropdown-toggle(href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Dropdown
 					.dropdown-menu(aria-labelledby="dropdown01")
 						a.dropdown-item(href="#") Action
 						a.dropdown-item(href="#") Another action
 						a.dropdown-item(href="#") Something else here
 			form.form-inline.my-2.my-lg-0
 				input.form-control.mr-sm-2(type="text" placeholder="Search" aria-label="Search")
-				button.btn.btn-outline-success.my-2.my-sm-0(type="submit") #{searchTxt}
-
-
-
-
-
-
-
-
-	.container
-		if messages.error
-			.alert.alert-danger
-				div= messages.error
-		if messages.info
-			.alert.alert-info
-				div= messages.info
-		if messages.success
-			.alert.alert-success
-				div= messages.success
-
-	#mainCont.container
-		block content
+				button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search

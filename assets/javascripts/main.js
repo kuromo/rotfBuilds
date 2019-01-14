@@ -1,5 +1,3 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-14
-* Copyright (c) 2019 ;*/
 //GLOBALS
 var gSrv = "http://localhost:3000/"
 
