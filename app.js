@@ -60,6 +60,7 @@ app.use(flash());
 app.use('/css',express.static(path.join(__dirname, 'public/stylesheets')));
 app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
 app.use('/img',express.static(path.join(__dirname, 'public/images')));
+app.use('/json',express.static(path.join(__dirname, 'public/data')));
 
 
 // dynamically include routes
