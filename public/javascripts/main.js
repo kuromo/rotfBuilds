@@ -29,6 +29,11 @@ $(function() {
             $(".ptCount").text(aloc.length+1)
         }// if active node toggle
         else if($(this).hasClass("activeNode")){
+             if($(this).hasClass("start")){
+                console.log("cant remove start")
+                return false
+             }
+
             $(".ptCount").text(aloc.length-1)
         }else{
             // check if node is conneted to start
@@ -53,7 +58,7 @@ $(function() {
         }
 
         $(this).toggleClass("activeNode")
-        calcStats()
+        calcTreeStat()
     })
 });
 
@@ -74,7 +79,7 @@ function secStart(newSt){
     // https://stackoverflow.com/questions/24685152/check-if-all-tiles-are-connected
     $(".activeNode.start").toggleClass("activeNode")
     $(newSt).toggleClass("activeNode")
-    calcStats()
+    calcTreeStat()
 }
 
 
@@ -115,9 +120,84 @@ function checkAloc(row, col){
     return $(".tile[data-id='r" + row + "c" + col +"']").hasClass("activeNode")
 }
 
-function calcStats(){
+
+function calcTreeStat(){ 
+    var stats = new TStats()
+
+
+    $(".activeNode").each(function(){
+        var id = $(this).data("id")
+        console.log(id)
+
+        var row = id.split("c")[0]
+        var col = "c" + id.split("c")[1]
+        if(tree[row][col].type != "start")
+            stats[tree[row][col].type] += tree[row][col].val
+        console.log(stats)
+    })
+}
+
+
+
+
+
+//___________________TreeStats_____________________
+
+function TStats(){
+    this.vit = 0
+    this.vitPre = 0
+    this.dex = 0
+    this.dexPre = 0
+    this.lootPre = 0
+    this.mp = 0
+    this.mpPre = 0
+    this.eva = 0
+    this.evaPre = 0
+    this.spd = 0
+    this.spdPre = 0
+    this.hp = 0
+    this.hpPre = 0
+    this.wis = 0
+    this.wisPre = 0
+    this.rof = 0
+    this.atk = 0
+    this.atkPre = 0
+    this.def = 0
+    this.defPre = 0
 
 }
+
+TStats.prototype.getFlat = function() {
+    return {
+        vit: this.vit,
+        dex: this.dex,
+        mp: this.mp,
+        eva: this.eva,
+        spd: this.spd,
+        hp: this.hp,
+        wis: this.wis,
+        rof: this.rof,
+        atk: this.atk,
+        def: this.def
+    }
+}
+
+TStats.prototype.getPre = function() {
+    return {
+        vitPre: this.vitPre,
+        dexPre: this.dexPre,
+        lootPre: this.lootPre,
+        mpPre: this.mpPre,
+        evaPre: this.evaPre,
+        spdPre: this.spdPre,
+        hpPre: this.hpPre,
+        wisPre: this.wisPre,
+        atkPre: this.atkPre,
+        defPre: this.defPre 
+    }
+}
+
+
 
 
 //___________________USER_____________________
@@ -250,122 +330,815 @@ function outputError(err){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-//adds autocomplete to given element
-function createAC(el){
-// create autocomplete
-    var arr = buildAC();
-    $( "#" + el ).autocomplete({
-        minLength:4,
-        source: function (requestObj, responseFunc) {
-            var matchArry   = arr.slice ();
-            var srchTerms   = $.trim (requestObj.term).split (/\s+/);
-
-            // for each search term remove non matches.
-            $.each (srchTerms, function (J, term) {
-                var regX    = new RegExp (term, "i");
-                matchArry   = $.map (matchArry, function (item) {
-                    return regX.test (item.label)  ?  item  : null;
-                } );
-                console.log(matchArry)
-            } );
-
-            // return the matches
-            responseFunc (matchArry);
+var tree = {
+    r1:{
+        c1:{
+            type: "wis",
+            val: 3
         },
-       open:   function (event, ui) {       
-            var resultsList = $("ul.ui-autocomplete > li.ui-menu-item > div");
-            var srchTerm    = $.trim ( $("#" + el).val () ).split (/\s+/).join ('|');
-
-            // loop through the results list and style the terms
-            resultsList.each ( function () {
-                var jThis   = $(this);
-                var regX    = new RegExp ('(' + srchTerm + ')', "ig");
-                var oldTxt  = jThis.text ();
-
-                jThis.html (oldTxt.replace (regX, '<span class="acHL"><b>$1</b></span>') );
-            } );
+        c2:{
+            type: "wis",
+            val: 1
         },
-        select: function (event, ui) {
-            console.log(event)
-            console.log(ui)
-
-            getAni(ui.item.aid)
-
-            return false;
+        c3:{
+            type: "wis",
+            val: 1
+        },
+        c4:{
+            type: "wisPre",
+            val: 2
+        },
+        c5:{
+            type: "wisPre",
+            val: 1
+        },
+        c6:{
+            type: "wis",
+            val: 1
+        },
+        c7:{
+            type: "lootPre",
+            val: 1
+        },
+        c8:{
+            type: "wis",
+            val: 2
+        },
+        c9:{
+            type: "wisPre",
+            val: 1
+        },
+        c10:{
+            type: "wis",
+            val: 1
+        },
+        c11:{
+            type: "wisPre",
+            val: 3
+        },
+        c12:{
+            type: "wis",
+            val: 1
+        },
+        c13:{
+            type: "wis",
+            val: 1
         }
-    }).data("ui-autocomplete")._renderItem = function (ul, item) {
-    return $("<li></li>")
-    .data("ui-autocomplete-item", item)
-    .append(acTitle(item))
-    .appendTo(ul);
-    };
-
-    // run search on enter
-    $( "#" + el ).keypress(function (e) {
-            var key = CheckBrowser(e);
-            if (key == 13) {
-                e.preventDefault();
-                renderResults(searchFor($("#aidTxt").val()))
-                return false;
-            }
-            else {
-                return true;
-            }
-        });
-}
-
-// build AC object array (label and value)
-function buildAC() {
-    for (var x in aTitles) {
-        var tmp = '';
-
-        for (var y in aTitles[x].lng) {
-            tmp += aTitles[x].lng[y] + ', ';
-
+    },
+    r2:{
+        c1:{
+            type: "wisPre",
+            val: 1
+        },
+        c2:{
+            type: "wis",
+            val: 1
+        },
+        c3:{
+            type: "wis",
+            val: 1
+        },
+        c4:{
+            type: "start",
+            val: "surv"
+        },
+        c5:{
+            type: "atk",
+            val: 1
+        },
+        c6:{
+            type: "dex",
+            val: 1
+        },
+        c7:{
+            type: "atk",
+            val: 2
+        },
+        c8:{
+            type: "dex",
+            val: 1
+        },
+        c9:{
+            type: "dex",
+            val: 2
+        },
+        c10:{
+            type: "start",
+            val: "infi"
+        },
+        c11:{
+            type: "dex",
+            val: 1
+        },
+        c12:{
+            type: "dex",
+            val: 1
+        },
+        c13:{
+            type: "atk",
+            val: 1
         }
-        tmp = tmp.substr(0, tmp.length - 2)
-
-        aTitles[x].label = tmp
+    },
+    r3:{
+        c1:{
+            type: "rof",
+            val: 2
+        },
+        c2:{
+            type: "rof",
+            val: 1
+        },
+        c3:{
+            type: "dex",
+            val: 1
+        },
+        c4:{
+            type: "atk",
+            val: 1
+        },
+        c5:{
+            type: "atk",
+            val: 1
+        },
+        c6:{
+            type: "rof",
+            val: 2
+        },
+        c7:{
+            type: "spd",
+            val: 1
+        },
+        c8:{
+            type: "spd",
+            val: 1
+        },
+        c9:{
+            type: "spd",
+            val: 2
+        },
+        c10:{
+            type: "def",
+            val: 2
+        },
+        c11:{
+            type: "spd",
+            val: 2
+        },
+        c12:{
+            type: "def",
+            val: 1
+        },
+        c13:{
+            type: "def",
+            val: 1
+        }
+    },
+    r4:{
+        c1:{
+            type: "spdPre",
+            val: 2
+        },
+        c2:{
+            type: "defPre",
+            val: 4
+        },
+        c3:{
+            type: "def",
+            val: 1
+        },
+        c4:{
+            type: "spd",
+            val: 1
+        },
+        c5:{
+            type: "def",
+            val: 1
+        },
+        c6:{
+            type: "spd",
+            val: 1
+        },
+        c7:{
+            type: "def",
+            val: 1
+        },
+        c8:{
+            type: "spd",
+            val: 2
+        },
+        c9:{
+            type: "def",
+            val: 2
+        },
+        c10:{
+            type: "atkPre",
+            val: 1
+        },
+        c11:{
+            type: "vit",
+            val: 1
+        },
+        c12:{
+            type: "vit",
+            val: 2
+        },
+        c13:{
+            type: "vit",
+            val: 1
+        }
+    },
+    r5:{
+        c1:{
+            type: "atkPre",
+            val: 1
+        },
+        c2:{
+            type: "vit",
+            val: 2
+        },
+        c3:{
+            type: "vitPre",
+            val: 2
+        },
+        c4:{
+            type: "vit",
+            val: 1
+        },
+        c5:{
+            type: "vitPre",
+            val: 2
+        },
+        c6:{
+            type: "defPre",
+            val: 5
+        },
+        c7:{
+            type: "atkPre",
+            val: 2
+        },
+        c8:{
+            type: "vitPre",
+            val: 3
+        },
+        c9:{
+            type: "vit",
+            val: 1
+        },
+        c10:{
+            type: "vit",
+            val: 1
+        },
+        c11:{
+            type: "vitPre",
+            val: 2
+        },
+        c12:{
+            type: "def",
+            val: 1
+        },
+        c13:{
+            type: "hp",
+            val: 10
+        }
+    },
+    r6:{
+        c1:{
+            type: "mp",
+            val: 5
+        },
+        c2:{
+            type: "mp",
+            val: 10
+        },
+        c3:{
+            type: "hp",
+            val: 5
+        },
+        c4:{
+            type: "start",
+            val: "sent"
+        },
+        c5:{
+            type: "hpPre",
+            val: 3
+        },
+        c6:{
+            type: "mpPre",
+            val: 3
+        },
+        c7:{
+            type: "mpPre",
+            val: 3
+        },
+        c8:{
+            type: "hp",
+            val: 10
+        },
+        c9:{
+            type: "mp",
+            val: 10
+        },
+        c10:{
+            type: "start",
+            val: "loot"
+        },
+        c11:{
+            type: "hp",
+            val: 5
+        },
+        c12:{
+            type: "hp",
+            val: 5
+        },
+        c13:{
+            type: "mp",
+            val: 5
+        }
+    },
+    r7:{
+        c1:{
+            type: "mp",
+            val: 5
+        },
+        c2:{
+            type: "hpPre",
+            val: 2
+        },
+        c3:{
+            type: "lootPre",
+            val: 1
+        },
+        c4:{
+            type: "lootPre",
+            val: 1
+        },
+        c5:{
+            type: "lootPre",
+            val: 1
+        },
+        c6:{
+            type: "lootPre",
+            val: 1
+        },
+        c7:{
+            type: "lootPre",
+            val: 1
+        },
+        c8:{
+            type: "eva",
+            val: 1
+        },
+        c9:{
+            type: "eva",
+            val: 2
+        },
+        c10:{
+            type: "eva",
+            val: 1
+        },
+        c11:{
+            type: "eva",
+            val: 1
+        },
+        c12:{
+            type: "eva",
+            val: 3
+        },
+        c13:{
+            type: "evaPre",
+            val: 4
+        }
+    },
+    r8:{
+        c1:{
+            type: "eva",
+            val: 1
+        },
+        c2:{
+            type: "eva",
+            val: 2
+        },
+        c3:{
+            type: "evaPre",
+            val: 3
+        },
+        c4:{
+            type: "spd",
+            val: 2
+        },
+        c5:{
+            type: "spd",
+            val: 1
+        },
+        c6:{
+            type: "spdPre",
+            val: 3
+        },
+        c7:{
+            type: "spdPre",
+            val: 1
+        },
+        c8:{
+            type: "lootPre",
+            val: 1
+        },
+        c9:{
+            type: "eva",
+            val: 1
+        },
+        c10:{
+            type: "spd",
+            val: 1
+        },
+        c11:{
+            type: "hp",
+            val: 5
+        },
+        c12:{
+            type: "mp",
+            val: 5
+        },
+        c13:{
+            type: "hpPre",
+            val: 2
+        }
+    },
+    r9:{
+        c1:{
+            type: "mpPre",
+            val: 2
+        },
+        c2:{
+            type: "hpPre",
+            val: 3
+        },
+        c3:{
+            type: "mpPre",
+            val: 3
+        },
+        c4:{
+            type: "hp",
+            val: 10
+        },
+        c5:{
+            type: "mp",
+            val: 10
+        },
+        c6:{
+            type: "rof",
+            val: 1
+        },
+        c7:{
+            type: "rof",
+            val: 1
+        },
+        c8:{
+            type: "atk",
+            val: 1
+        },
+        c9:{
+            type: "dex",
+            val: 1
+        },
+        c10:{
+            type: "atk",
+            val: 1
+        },
+        c11:{
+            type: "dexPre",
+            val: 2
+        },
+        c12:{
+            type: "atkPre",
+            val: 2
+        },
+        c13:{
+            type: "wis",
+            val: 2
+        }
+    },
+    r10:{
+        c1:{
+            type: "wisPre",
+            val: 5
+        },
+        c2:{
+            type: "wisPre",
+            val: 10
+        },
+        c3:{
+            type: "wis",
+            val: 5
+        },
+        c4:{
+            type: "start",
+            val: "mani"
+        },
+        c5:{
+            type: "wis",
+            val: 3
+        },
+        c6:{
+            type: "wis",
+            val: 3
+        },
+        c7:{
+            type: "vit",
+            val: 3
+        },
+        c8:{
+            type: "vit",
+            val: 10
+        },
+        c9:{
+            type: "vitPre",
+            val: 10
+        },
+        c10:{
+            type: "start",
+            val: "butch"
+        },
+        c11:{
+            type: "hp",
+            val: 5
+        },
+        c12:{
+            type: "hp",
+            val: 5
+        },
+        c13:{
+            type: "hp",
+            val: 1
+        }
+    },
+    r11:{
+        c1:{
+            type: "vitPre",
+            val: 1
+        },
+        c2:{
+            type: "rof",
+            val: 1
+        },
+        c3:{
+            type: "dexPre",
+            val: 1
+        },
+        c4:{
+            type: "dexPre",
+            val: 1
+        },
+        c5:{
+            type: "rof",
+            val: 1
+        },
+        c6:{
+            type: "eva",
+            val: 1
+        },
+        c7:{
+            type: "evaPre",
+            val: 1
+        },
+        c8:{
+            type: "eva",
+            val: 2
+        },
+        c9:{
+            type: "spd",
+            val: 1
+        },
+        c10:{
+            type: "hp",
+            val: 3
+        },
+        c11:{
+            type: "mp",
+            val: 3
+        },
+        c12:{
+            type: "hpPre",
+            val: 1
+        },
+        c13:{
+            type: "mpPre",
+            val: 1
+        }
+    },
+    r12:{
+        c1:{
+            type: "wis",
+            val: 1
+        },
+        c2:{
+            type: "vit",
+            val: 1
+        },
+        c3:{
+            type: "spd",
+            val: 1
+        },
+        c4:{
+            type: "atk",
+            val: 1
+        },
+        c5:{
+            type: "defPre",
+            val: 2
+        },
+        c6:{
+            type: "def",
+            val: 1
+        },
+        c7:{
+            type: "def",
+            val: 2
+        },
+        c8:{
+            type: "vit",
+            val: 1
+        },
+        c9:{
+            type: "def",
+            val: 1
+        },
+        c10:{
+            type: "defPre",
+            val: 2
+        },
+        c11:{
+            type: "vit",
+            val: 1
+        },
+        c12:{
+            type: "defPre",
+            val: 2
+        },
+        c13:{
+            type: "def",
+            val: 1
+        }
+    },
+    r13:{
+        c1:{
+            type: "rof",
+            val: 1
+        },
+        c2:{
+            type: "atk",
+            val: 1
+        },
+        c3:{
+            type: "rof",
+            val: 1
+        },
+        c4:{
+            type: "atk",
+            val: 1
+        },
+        c5:{
+            type: "spd",
+            val: 1
+        },
+        c6:{
+            type: "spd",
+            val: 1
+        },
+        c7:{
+            type: "spd",
+            val: 1
+        },
+        c8:{
+            type: "spd",
+            val: 1
+        },
+        c9:{
+            type: "spdPre",
+            val: 1
+        },
+        c10:{
+            type: "spdPre",
+            val: 1
+        },
+        c11:{
+            type: "spdPre",
+            val: 1
+        },
+        c12:{
+            type: "eva",
+            val: 3
+        },
+        c13:{
+            type: "vit",
+            val: 1
+        }
+    },
+    r14:{
+        c1:{
+            type: "wis",
+            val: 1
+        },
+        c2:{
+            type: "rof",
+            val: 2
+        },
+        c3:{
+            type: "vitPre",
+            val: 2
+        },
+        c4:{
+            type: "start",
+            val: "jugg"
+        },
+        c5:{
+            type: "lootPre",
+            val: 1
+        },
+        c6:{
+            type: "hp",
+            val: 5
+        },
+        c7:{
+            type: "mp",
+            val: 5
+        },
+        c8:{
+            type: "hpPre",
+            val: 1
+        },
+        c9:{
+            type: "mpPre",
+            val: 1
+        },
+        c10:{
+            type: "start",
+            val: "adep"
+        },
+        c11:{
+            type: "atk",
+            val: 2
+        },
+        c12:{
+            type: "def",
+            val: 2
+        },
+        c13:{
+            type: "defPre",
+            val: 3
+        }
+    },
+    r15:{
+        c1:{
+            type: "def",
+            val: 1
+        },
+        c2:{
+            type: "defPre",
+            val: 1
+        },
+        c3:{
+            type: "vit",
+            val: 1
+        },
+        c4:{
+            type: "atk",
+            val: 1
+        },
+        c5:{
+            type: "dex",
+            val: 1
+        },
+        c6:{
+            type: "spd",
+            val: 1
+        },
+        c7:{
+            type: "def",
+            val: 1
+        },
+        c8:{
+            type: "vit",
+            val: 1
+        },
+        c9:{
+            type: "wis",
+            val: 1
+        },
+        c10:{
+            type: "hp",
+            val: 5
+        },
+        c11:{
+            type: "mp",
+            val: 5
+        },
+        c12:{
+            type: "eva",
+            val: 2
+        },
+        c13:{
+            type: "lootPre",
+            val: 1
+        }
     }
-
-    var arr = $.map(aTitles, function (value, index) {
-        return [value];
-    });
-
-
-    return arr
 }
-*/
-
-
-
-
-
-
-
-
-
-
-
-
