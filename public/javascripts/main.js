@@ -26,15 +26,15 @@ $(function() {
 
         // check if first start node
         if($(this).hasClass("start") && !$(".activeNode").hasClass("start")){
-            $(".ptCount").text(aloc.length+1)
+            //$(".ptCount").text(aloc.length+1)
         }// if active node toggle
         else if($(this).hasClass("activeNode")){
-             if($(this).hasClass("start")){
+             if($(this).hasClass("start")&&aloc.length!=1){
                 console.log("cant remove start")
                 return false
              }
 
-            $(".ptCount").text(aloc.length-1)
+            //$(".ptCount").text(aloc.length-1)
         }else{
             // check if node is conneted to start
             if(!checkCon($(this).data("id"))){
@@ -48,7 +48,7 @@ $(function() {
                     return false
                 }
 
-                $(".ptCount").text(aloc.length+1)
+                //$(".ptCount").text(aloc.length+1)
 
             }else{
                 console.log("no poits left")
@@ -120,6 +120,28 @@ function checkAloc(row, col){
     return $(".tile[data-id='r" + row + "c" + col +"']").hasClass("activeNode")
 }
 
+function updateStats(stats){
+
+    //update tree stats
+    var str = ""
+
+    for (var stat in stats){
+        var val = stats[stat]
+        if(Number.isInteger(val)&&val !==0){
+            str += stat 
+            str += ":  " 
+            str += val 
+            str += "<br>" 
+        }
+    }
+
+    $("#tStatCont").html(str)
+
+
+    //update point counter
+    var aloc = $(".activeNode")
+    $(".ptCount").text(aloc.length)
+}
 
 function calcTreeStat(){ 
     var stats = new TStats()
@@ -127,20 +149,25 @@ function calcTreeStat(){
 
     $(".activeNode").each(function(){
         var id = $(this).data("id")
-        console.log(id)
 
         var row = id.split("c")[0]
         var col = "c" + id.split("c")[1]
         if(tree[row][col].type == "start"){
-            console.log("TODO start calc")
+            calcStart(tree[row][col].val, stats)
         }else{
              stats[tree[row][col].type] += tree[row][col].val
         }
-
-        console.log(stats)
     })
+
+    updateStats(stats)
 }
 
+
+function calcStart(starter, stats){
+    for(var stat in stNodes[starter]){
+        stats[stat] += stNodes[starter][stat]
+    }
+}
 
 
 

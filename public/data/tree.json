@@ -810,3 +810,66 @@ var tree = {
         }
     }
 }
+
+
+var stNodes = {
+    surv: {
+        hpPre: 18,
+        mpPre: 18,
+        atkPre: -9,
+        rof: 4
+    },
+    infi: {
+        spdPre: 5,
+        eva: 25,
+        defPre: -20,    
+        dexPre: -5, 
+        atkPre: -5, 
+        vitPre: -5, 
+        hpPre: -5
+    },
+    sent: {
+        defPre: 40,
+        hpPre: 14,
+        dexPre: -8,
+        rof: -8
+    },
+    loot: {
+        lootPre: 10,
+        hpPre: -12,
+        hpPre: -12
+    },
+    mani: {
+        dexPre: 10,
+        rof: 5,
+        atkPre: -12,
+        hpPre: -8,
+        spdPre: -4,
+        vitPre: -4
+    },
+    butch: {
+        atkPre: 15,
+        dexPre: -6,
+        rof: -5,    
+        spdPre: -4, 
+        defPre: -4, 
+        wisPre: -3, 
+        vitPre: -3
+    },
+    jugg: {
+        vitPre: 20,
+        hpPre: 12,
+        defPre: -5,
+        spdPre: -5,
+        dexPre: -5,
+        atkPre: -5
+    },
+    adep: {
+        wisPre: 12,
+        mpPre: 12,
+        defPre: -5,
+        spdPre: -5,
+        dexPre: -5,
+        atkPre: -5      
+    },
+}
