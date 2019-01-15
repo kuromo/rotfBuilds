@@ -5,12 +5,15 @@ var AC = require('../controllers/account.js');
 module.exports.getPageOpt = function(session) {
 	var options = {
 		searchTxt: "Login",
-		navItems: [{link: "/tree", desc: "Tree"}]
+		navItems: [{link: "/tree", desc: "Tree"}],
+		usrLinks: [{link: "/profile", desc: "user profile"}]
 	}
 	if(session.usr){
+		options.hasSess= true
 		options.searchTxt= "Search"
 		options.hTitle= 'rotfBuilds'
-		options.navItems.push({link: "/profile", desc: "user profile"});
+		options.navUsrWelc= 'Hi, ' + session.usr.firstName
+		options.navItems.push({link: "/usrOnly", desc: "usrOnly"});
 
 		return options
 	}else{

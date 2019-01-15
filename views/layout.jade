@@ -19,20 +19,28 @@ body
 
 	nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
 		a.navbar-brand(href="http://localhost:3000") Navbar
-		button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation")
+		button.navbar-toggler(type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation")
 			span.navbar-toggler-icon
 
-		#navbarsExampleDefault.collapse.navbar-collapse
+		#mainNav.collapse.navbar-collapse
 			ul.navbar-nav.mr-auto 
 				if (navItems)
 					each nav in navItems
 						li.nav-item  
 							a.nav-link(href= nav.link)=nav.desc
 
-			.form-inline.my-2.my-lg-0
-				input#navUsr.form-control.mr-sm-2(type="text" placeholder="name" aria-label="Search" hidden=true)
-				input#navPwd.form-control.mr-sm-2(type="password" placeholder="pwd" aria-label="Search" hidden=true)
-				button#navLogBtn.btn.btn-outline-success.my-2.my-sm-0 #{searchTxt}
+			if (!hasSess)
+				.form-inline.my-2.my-lg-0
+					input#navUsr.form-control.mr-sm-2(type="text" placeholder="name" aria-label="Search" hidden=true)
+					input#navPwd.form-control.mr-sm-2(type="password" placeholder="pwd" aria-label="Search" hidden=true)
+					button#navLogBtn.btn.btn-outline-success.my-2.my-sm-0 #{searchTxt}
+			else
+				ul.navbar-nav.my-2.my-lg-0
+					li.nav-item.dropdown
+						a#navUsrDrop.nav-link.dropdown-toggle(href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")= navUsrWelc
+						.dropdown-menu(aria-labelledby="navUsrDrop")
+							each usrLi in usrLinks
+								a.dropdown-item(href= usrLi.link)=usrLi.desc
 
 
 
