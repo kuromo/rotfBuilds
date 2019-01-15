@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var tNode = require('../models/tree-node.js')
 
 
-module.exports.getTree = function(res, callback) {
+module.exports.getTree = function(res, loc, opt, callback) {
 	
 	tNode.find({}, function(err, dbTree) {
 		var newTree = {}
@@ -17,26 +17,23 @@ module.exports.getTree = function(res, callback) {
                 val: dbTree[x]["val"]
             }
         }
-		res.send(newTree)
+
+        // TODO may only generate json when db changes (dont request from db every time)
+        //if it has a render location add tree to opt
+        if(loc&&opt){
+        	opt.tree = newTree
+
+        	res.render(loc, opt);
+        }else{
+			res.send(newTree)
+		}
+
 	})
-
-
 }
 
 
 module.exports.importNodes = function(nodeList, callback) {
 	
-/*
-	tNode.deleteMany({}, function(err) {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log("cleared treeNodes from DB")
-            }
-        }
-    );*/
-
-
 	var bulkOps = [{
 		"deleteMany": {
 			"filter": {}
