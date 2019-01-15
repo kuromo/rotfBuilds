@@ -6,7 +6,10 @@ module.exports.getPageOpt = function(session) {
 	var options = {
 		searchTxt: "Login",
 		navItems: [{link: "/tree", desc: "Tree"}],
-		usrLinks: [{link: "/profile", desc: "user profile"}]
+		usrLinks: [
+			{link: "/profile", desc: "Profile"},
+			{link: "/logout", desc: "Logout"}
+		]
 	}
 	if(session.usr){
 		options.hasSess= true

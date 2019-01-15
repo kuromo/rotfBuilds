@@ -10,11 +10,23 @@ body {
 }
 
 .container {
-  background-color: #fff;
+  padding: 60px 30px;
 }
 
-#mainCont {
-  padding: 30px;
+section {
+  background-color: #dda;
+}
+
+#treeTop {
+  background-color: #ada;
+}
+
+#treeTree {
+  background-color: #8b8;
+}
+
+#tStat {
+  background-color: #ada;
 }
 
 /*

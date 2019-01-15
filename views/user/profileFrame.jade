@@ -1,9 +1,10 @@
 extends ../layout
 
 block content
+	section.row
+		.container
+			#profLeft
+				h2 Welcome #{name}
 
-	#profLeft
-		h2 Welcome #{name}
-
-	#profRight
-		block profRightCont
+			#profRight
+				block profRightCont

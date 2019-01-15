@@ -1,5 +1,8 @@
 extends ../layout
 
 block content
-	input#mail.input(type="text")
-	button#login(onClick="forgot()") forgot
+	section.row
+		.container
+			label#mailLbl mail
+			input#mail.form-control(type="text")
+			button#login.form-control(onClick="forgot()") forgot

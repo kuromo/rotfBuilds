@@ -1,6 +1,10 @@
 extends ../layout
 
 block content
-	input#usrName.input(type="text")
-	input#usrPwd.input(type="password")
-	button#login(onClick="login()") Login
+	section.row
+		.container
+			label#usrNameLbl name
+			input#usrName.form-control(type="text")
+			label#usrPwdLbl pw
+			input#usrPwd.form-control(type="password")
+			button#login.form-control(onClick="login()") Login

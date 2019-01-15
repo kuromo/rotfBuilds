@@ -1,27 +1,29 @@
 extends ../layout
 
 block content
-	label#usrNameLbl(style='white-space:pre;') usrName
-	input#usrName.input(type="text")
-	br
-	label#mailLbl(style='white-space:pre;') mail
-	input#mail.input(type="text")
-	br
-	label#firstNameLbl first name
-	input#firstName.input(type="text")
-	br
-	label#lastNameLbl last name
-	input#lastName.input(type="text")
-	br
-	label#usrPwdLbl pw
-	input#usrPwd.input(type="password")
-	br
-	label#pwdRepLbl rep pw
-	input#pwdRep.input(type="password")
-	br
-	button#login(onClick="register()") Login
+	section.row
+		.container
+			label#usrNameLbl(style='white-space:pre;') usrName
+			input#usrName.form-control(type="text")
+			br
+			label#mailLbl(style='white-space:pre;') mail
+			input#mail.form-control(type="text")
+			br
+			label#firstNameLbl first name
+			input#firstName.form-control(type="text")
+			br
+			label#lastNameLbl last name
+			input#lastName.form-control(type="text")
+			br
+			label#usrPwdLbl pw
+			input#usrPwd.form-control(type="password")
+			br
+			label#pwdRepLbl rep pw
+			input#pwdRep.form-control(type="password")
+			br
+			button#login.form-control(onClick="register()") Login
 
-	if errors  
-		ul
-			for error in errors
-				li!= error.msg
+			if errors  
+				ul
+					for error in errors
+						li!= error.msg

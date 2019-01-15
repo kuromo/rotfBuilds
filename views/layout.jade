@@ -49,6 +49,11 @@ body
 
 
 
+	
+	
+	#mainCont
+		block content
+
 	.container
 		if messages.error
 			.alert.alert-danger
@@ -59,9 +64,6 @@ body
 		if messages.success
 			.alert.alert-success
 				div= messages.success
-
-	#mainCont.container
-		block content
 
 
 //	#header.row(data--75-end="opacity:1;", data--101-end="opacity:0.5;")

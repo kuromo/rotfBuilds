@@ -7,6 +7,8 @@ module.exports.controller = function(app) {
 
 	app.get('/tree', function (req, res, next) {
 		var opt = RC.getPageOpt(req.session)
+		opt.treeTitle = "Skill Tree",
+		opt.treeDesc = "allocate points and check yout power",
 		opt.points = 0,
 		opt.tree = tree
 		
