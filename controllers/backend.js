@@ -2,6 +2,28 @@ var express = require('express');
 var mongoose = require('mongoose')
 var tNode = require('../models/tree-node.js')
 
+
+module.exports.getTree = function(res, callback) {
+	
+	tNode.find({}, function(err, dbTree) {
+		var newTree = {}
+
+		for(var x in dbTree){
+            if(!newTree[dbTree[x]["r"]]) 
+                newTree[dbTree[x]["r"]] = {}
+
+            newTree[dbTree[x]["r"]][dbTree[x]["c"]] = {
+                type: dbTree[x]["type"],
+                val: dbTree[x]["val"]
+            }
+        }
+		res.send(newTree)
+	})
+
+
+}
+
+
 module.exports.importNodes = function(nodeList, callback) {
 	
 /*
@@ -49,48 +71,6 @@ module.exports.importNodes = function(nodeList, callback) {
 	tNode.bulkWrite(bulkOps).then(res => {
 		console.log('in: %s, mod: %s, del: %s',res.insertedCount, res.modifiedCount, res.deletedCount);
 	});
-
-
-
-
-
-
-
-
-
-
-	/*User.findOne({$or: [{email: newUser.email}, {usrName: newUser.usrName} ]}, function (err, dbUser) {
-		if (err) {
-			return callback(err, new ApiRes({ success: false, extras: { msg: ApiMsg.DB_ERROR } }));
-		}
-		if (dbUser) {
-			if(dbUser.email == newUser.email){
-				return callback(err, new ApiRes({ success: false, extras: { msg: ApiMsg.EMAIL_ALREADY_EXISTS } }));
-			}else{
-				return callback(err, new ApiRes({ success: false, extras: { msg: ApiMsg.USERNAME_ALREADY_EXISTS } }));
-			}
-		} else {
-			newUser.save(function (err, dbUser) {
-				if (err) {
-					return callback(err, new ApiRes({ success: false, extras: { msg: ApiMsg.DB_ERROR } }));
-				}
-
-				var userProfileModel = new UserProfileModel({
-					id: dbUser.id,
-					usrName: dbUser.usrName,
-					email: dbUser.email,
-					firstName: dbUser.firstName,
-					lastName: dbUser.lastName
-				});
-
-				return callback(err, new ApiRes({
-					success: true, extras: {
-						userProfileModel: userProfileModel
-					}
-				}));             
-			});
-		}
-	});*/
 }
 
 function onInsert(err, docs) {

@@ -15,7 +15,7 @@ module.exports.controller = function(app) {
 			{link: "/importTree", desc: "import tree"}
 		]
 
-		if(sess.usr.isAdmin){
+		if(sess.usr&&sess.usr.isAdmin){
 			AC.checkSess(req.session.usr,function(err, msg){
 				if(err){return console.log(err)}
 				
@@ -31,11 +31,15 @@ module.exports.controller = function(app) {
 		}
 	});
 
+	app.get('/getTree', function(req, res, next) {
+		var tree = BC.getTree(res)
+	});
+
 	app.get('/importTree', function(req, res, next) {
 		var sess = req.session
 		var opt = RC.getPageOpt(req.session)
 
-		if(sess.usr.isAdmin){
+		if(sess.usr&&sess.usr.isAdmin){
 			AC.checkSess(req.session.usr,function(err, msg){
 				if(err){return console.log(err)}
 				
@@ -55,7 +59,7 @@ module.exports.controller = function(app) {
 		var sess = req.session
 
 
-		if(sess.usr.isAdmin){
+		if(sess.usr&&sess.usr.isAdmin){
 			AC.checkSess(req.session.usr,function(err, msg){
 				if(err){return console.log(err)}
 				

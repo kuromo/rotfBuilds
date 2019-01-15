@@ -23,6 +23,25 @@ function importTree(){
 
     srvPost("importTree", console.log, {tree: JSON.stringify(tree)})
 }
+function getTree(){
+
+ 
+
+    srvGet("getTree", function(dbTree){
+        /*var newTree = {}
+
+        for(var x in dbTree){
+            if(!newTree[dbTree[x]["r"]]) 
+                newTree[dbTree[x]["r"]] = {}
+
+            newTree[dbTree[x]["r"]][dbTree[x]["c"]] = {
+                type: dbTree[x]["type"],
+                val: dbTree[x]["val"]
+            }
+        }*/
+        console.log(dbTree)
+    })
+}
 
 $(function() {
     $(".tile").click(function(){
