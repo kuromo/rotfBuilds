@@ -14,6 +14,14 @@ $(function() {
 
 //___________________TREE_____________________
 
+
+function importTree(){
+
+
+
+    srvPost("importTree", console.log, {tree: JSON.stringify(tree)})
+}
+
 $(function() {
     $(".tile").click(function(){
         console.log(this)

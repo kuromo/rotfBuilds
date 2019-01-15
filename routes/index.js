@@ -45,28 +45,4 @@ module.exports.controller = function(app) {
 		    return next(error)
 		}		
 	});
-
-	app.get('/adminOnly', function(req, res, next) {
-		var sess = req.session
-		var opt = RC.getPageOpt(req.session)
-
-		opt.links= [
-			{link: "#", desc: "admin controlls"}
-		]
-
-		if(sess.usr.isAdmin){
-			AC.checkSess(req.session.usr,function(err, msg){
-				if(err){return console.log(err)}
-				
-				if(msg.success){
-
-					res.render('index', opt);
-				}
-			})
-		}else{
-			const error = new Error('401 Unauthorized!')
-		    error.httpStatusCode = 401
-		    return next(error)
-		}
-	});
 }

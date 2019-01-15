@@ -19,7 +19,7 @@ module.exports.getPageOpt = function(session) {
 		options.navItems.push({link: "/usrOnly", desc: "usrOnly"});
 
 		if(session.usr.isAdmin){
-			options.navItems.push({link: "/adminOnly", desc: "adminOnly"});
+			options.navItems.push({link: "/backend", desc: "Backend"});
 
 			return options
 		}
