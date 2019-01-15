@@ -3,7 +3,6 @@ doctype html
 head
 	title #{hTitle}
 
-
 	script(src="https://code.jquery.com/jquery-3.3.1.min.js")
 	script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous")
 	link(href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css", rel="stylesheet") 
@@ -19,24 +18,17 @@ head
 body
 
 	nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
-		a.navbar-brand(href="#") Navbar
+		a.navbar-brand(href="http://localhost:3000") Navbar
 		button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation")
 			span.navbar-toggler-icon
 
 		#navbarsExampleDefault.collapse.navbar-collapse
 			ul.navbar-nav.mr-auto 
-				li.nav-item.active
-					a.nav-link(href="#") Home
-				li.nav-item
-					a.nav-link(href="#") Link
-				li.nav-item
-					a.nav-link.disabled(href="#") Disabled
-				li.nav-item.dropdown
-					a.nav-link.dropdown-toggle(href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Dropdown
-					.dropdown-menu(aria-labelledby="dropdown01")
-						a.dropdown-item(href="#") Action
-						a.dropdown-item(href="#") Another action
-						a.dropdown-item(href="#") Something else here
+				if (navItems)
+					each nav in navItems
+						li.nav-item  
+							a.nav-link(href= nav.link)=nav.desc
+
 			form.form-inline.my-2.my-lg-0
 				input.form-control.mr-sm-2(type="text" placeholder="Search" aria-label="Search")
 				button.btn.btn-outline-success.my-2.my-sm-0(type="submit") #{searchTxt}
@@ -65,3 +57,29 @@ body
 
 //	#header.row(data--75-end="opacity:1;", data--101-end="opacity:0.5;")
 //		#headerImg.row(data-0="transform: translateY(-100px);", data--100-end="transform: translateY(0px);")          
+
+
+//    bootstrap template
+
+//nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+//		a.navbar-brand(href="http://localhost:3000") Navbar
+//		button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation")
+//			span.navbar-toggler-icon
+//
+//		#navbarsExampleDefault.collapse.navbar-collapse
+//			ul.navbar-nav.mr-auto 
+//				li.nav-item.active
+//					a.nav-link(href="#") Home
+//				li.nav-item
+//					a.nav-link(href="#") Link
+//				li.nav-item
+//					a.nav-link.disabled(href="#") Disabled
+//				li.nav-item.dropdown
+//					a.nav-link.dropdown-toggle(href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Dropdown
+//					.dropdown-menu(aria-labelledby="dropdown01")
+//						a.dropdown-item(href="#") Action
+//						a.dropdown-item(href="#") Another action
+//						a.dropdown-item(href="#") Something else here
+//			form.form-inline.my-2.my-lg-0
+//				input.form-control.mr-sm-2(type="text" placeholder="Search" aria-label="Search")
+//				button.btn.btn-outline-success.my-2.my-sm-0(type="submit") #{searchTxt}
