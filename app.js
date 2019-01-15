@@ -3,7 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var sassMiddleware = require('node-sass-middleware');
+//var sassMiddleware = require('node-sass-middleware');
 var fs = require('fs');
 var session = require('express-session')
 var mongoose = require('mongoose');
@@ -21,12 +21,15 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(sassMiddleware({
+
+// derp TODO may use node sass instead of grunt
+//  "node-sass-middleware": "^0.11.0", -> npm install
+/*app.use(sassMiddleware({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
     indentedSyntax: false, // true = .sass and false = .scss
     sourceMap: true
-}));
+}));*/
 
 
 // database connection
@@ -89,5 +92,7 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+
 
 module.exports = app;

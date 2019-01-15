@@ -1,12 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose')
 var AC = require('../controllers/account.js');
+var RC = require('../controllers/render.js');
 //var userM = require('../models/index');
 
 module.exports.controller = function(app) {
 
 	app.get('/register', function(req, res, next) {
-		res.render('user/register');
+		var opt = RC.getPageOpt(req.session)
+
+		res.render('user/register', opt);
 	});
 
 	app.post('/register', function(req, res, next) {
@@ -42,7 +45,9 @@ module.exports.controller = function(app) {
 	});
 
 	app.get('/login', function(req, res, next) {
-		res.render('user/login');
+		var opt = RC.getPageOpt(req.session)
+
+		res.render('user/login', opt);
 	});
 
 	app.post('/login', function(req, res, next) {
@@ -82,11 +87,13 @@ module.exports.controller = function(app) {
 				
 				if(msg.success){
 					var user= msg.extras.user
+					var opt = RC.getPageOpt(req.session)
 
-					res.render('user/profile', { 
-						name: user.firstName + " " + user.lastName + "(" + user.usrName +")",
-						      links: [ {link: "/logout", desc: "logout"} ]
-					});
+					opt.name= user.firstName + " " + user.lastName + "(" + user.usrName +")"
+					opt.links= [ {link: "/logout", desc: "logout"} ]
+					
+
+					res.render('user/profile', opt);
 				}else{
 					//TODO tell user
 					console.log(msg)
@@ -98,7 +105,9 @@ module.exports.controller = function(app) {
 	});
 
 	app.get('/forgot', function(req, res, next) {
-		res.render('user/forgot');
+		var opt = RC.getPageOpt(req.session)
+
+		res.render('user/forgot', opt);
 	});
 
 	app.post('/forgot', function(req, res, next) {
@@ -119,7 +128,9 @@ module.exports.controller = function(app) {
 			if(err){return console.log(err)}
 
 			if(msg.success){
-				res.render('user/reset');
+				var opt = RC.getPageOpt(req.session)
+
+				res.render('user/reset', opt);
 			}else{
 				//TODO tell user
 				console.log(msg)

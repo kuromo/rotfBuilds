@@ -1,20 +1,21 @@
 var express = require('express');
 var mongoose = require('mongoose')
-//var indexM = require('../models/index');
+var async = require('async');
+var RC = require('../controllers/render.js');
 
 module.exports.controller = function(app) {
 
-  app.get('/tree', function(req, res, next) {
-    res.render('tree', { 
-      hTitle: 'recipeManager',
-      toggleTxt: "Toggle navigation",
-      nav1: "Import",
-      nav2: "page2",
-      points: 0,
-      tree: tree
-    });
-  });
+	app.get('/tree', function (req, res, next) {
+		var opt = RC.getPageOpt(req.session)
+		opt.points = 0,
+		opt.tree = tree
+		
+		res.render('tree', opt);
 
+
+
+
+	});
 }
 
 

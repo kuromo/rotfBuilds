@@ -4,6 +4,7 @@ a {
 
 body {
   background-color: #cdc;
+  margin-top: 55px;
 }
 
 .container {
@@ -14,32 +15,19 @@ body {
   padding: 30px;
 }
 
-.navbar {
-  margin: 0;
+/*
+#header{
+	height:400px;
+	min-height: 400px;
 }
-
-.navbar.affix {
-  position: fixed;
-  top: 0;
-  width: 100%;
+#headerImg{
+	height: 500px;
+	background: url("https://jovinacooksitalian.files.wordpress.com/2015/02/lighter6.jpg") no-repeat center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
 }
-
-.nav-wrapper {
-  min-height: 50px;
-}
-
-#header {
-  height: 400px;
-  min-height: 400px;
-}
-
-#headerImg {
-  height: 500px;
-  background: url("https://jovinacooksitalian.files.wordpress.com/2015/02/lighter6.jpg") no-repeat center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+*/
 
 /*# sourceMappingURL=main.css.map */

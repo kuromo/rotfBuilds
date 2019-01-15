@@ -5,6 +5,7 @@ a{
 
 body{
 	background-color: #cdc;
+	margin-top: 55px;
 }
 
 .container{
@@ -15,21 +16,7 @@ body{
   padding: 30px;
 }
 
-.navbar{
-	margin:0;
-}
-
-.navbar.affix {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.nav-wrapper
-{
-    min-height:50px;
-}
-
+/*
 #header{
 	height:400px;
 	min-height: 400px;
@@ -42,7 +29,7 @@ body{
 		-o-background-size: cover;
 		background-size: cover;
 }
-
+*/
 
 
 
