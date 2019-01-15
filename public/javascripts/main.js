@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-14
+/*! rotfBuilds - v0.0.0 - 2019-01-15
 * Copyright (c) 2019 ;*/
 //GLOBALS
 var gSrv = "http://localhost:3000/"
@@ -228,6 +228,28 @@ TStats.prototype.getPre = function() {
         defPre: this.defPre 
     }
 }
+
+
+
+
+//___________________NAV_____________________
+
+$(function() {
+    $("#navLogBtn").click(function(){
+        if($("#navUsr").attr("hidden")){
+            $("#navUsr").attr("hidden", false)
+            $("#navPwd").attr("hidden", false)
+        }else{
+            var usrName = $("#navUsr").val()
+            var pwd = $("#navPwd").val()
+
+            srvPost("login", console.log, {usrName: usrName, pwd: pwd})
+        }
+
+    })
+})
+
+
 
 
 

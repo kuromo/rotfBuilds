@@ -29,9 +29,10 @@ body
 						li.nav-item  
 							a.nav-link(href= nav.link)=nav.desc
 
-			form.form-inline.my-2.my-lg-0
-				input.form-control.mr-sm-2(type="text" placeholder="Search" aria-label="Search")
-				button.btn.btn-outline-success.my-2.my-sm-0(type="submit") #{searchTxt}
+			.form-inline.my-2.my-lg-0
+				input#navUsr.form-control.mr-sm-2(type="text" placeholder="name" aria-label="Search" hidden=true)
+				input#navPwd.form-control.mr-sm-2(type="password" placeholder="pwd" aria-label="Search" hidden=true)
+				button#navLogBtn.btn.btn-outline-success.my-2.my-sm-0 #{searchTxt}
 
 
 

@@ -230,6 +230,28 @@ TStats.prototype.getPre = function() {
 
 
 
+//___________________NAV_____________________
+
+$(function() {
+    $("#navLogBtn").click(function(){
+        if($("#navUsr").attr("hidden")){
+            $("#navUsr").attr("hidden", false)
+            $("#navPwd").attr("hidden", false)
+        }else{
+            var usrName = $("#navUsr").val()
+            var pwd = $("#navPwd").val()
+
+            srvPost("login", console.log, {usrName: usrName, pwd: pwd})
+        }
+
+    })
+})
+
+
+
+
+
+
 //___________________USER_____________________
 
 //TODO validation
