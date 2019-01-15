@@ -5,7 +5,8 @@ var UserProfileModel = function(res, isSes) {
 	this.usrName = res.usrName,
 	this.email = res.email,
 	this.firstName = res.firstName,
-	this.lastName = res.lastName
+	this.lastName = res.lastName,
+	this.isAdmin = res.isAdmin
 };
 
 //rotate user array

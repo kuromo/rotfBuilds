@@ -29,7 +29,8 @@ module.exports.logon = function(usrName, password, callback) {
 					usrName: dbUser.usrName,
 					email: dbUser.email,
 					firstName: dbUser.firstName,
-					lastName: dbUser.lastName
+					lastName: dbUser.lastName,
+					isAdmin: dbUser.isAdmin
 				});
 
 				return callback(err, new ApiRes({

@@ -8,6 +8,7 @@ var UserSchema = new Schema({
 	email: { type: String, required: true, unique: true },
 	firstName: String,
 	lastName: String,
+	isAdmin: Boolean,
 	passwordHash: { type: String, required: true },
 	passwordSalt: String,
 	resetPasswordToken: String,

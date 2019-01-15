@@ -18,6 +18,12 @@ module.exports.getPageOpt = function(session) {
 		options.navUsrWelc= 'Hi, ' + session.usr.firstName
 		options.navItems.push({link: "/usrOnly", desc: "usrOnly"});
 
+		if(session.usr.isAdmin){
+			options.navItems.push({link: "/adminOnly", desc: "adminOnly"});
+
+			return options
+		}
+
 		return options
 	}else{
 		//no sess
