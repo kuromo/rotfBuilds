@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-15
+/*! rotfBuilds - v0.0.0 - 2019-01-17
 * Copyright (c) 2019 ;*/
 //GLOBALS
 var gSrv = "http://localhost:3000/"
@@ -65,7 +65,7 @@ $(function() {
             //$(".ptCount").text(aloc.length-1)
         }else{
             // check if node is conneted to start
-            if(!checkCon($(this).data("id"))){
+            if(!getAdjac($(this).data("id"))){
                 console.log("not connected to start")
                 return false
             }// check if points left
@@ -86,6 +86,13 @@ $(function() {
         }
 
         $(this).toggleClass("activeNode")
+
+        var uncon = checkUncon()
+        if(uncon){
+            console.log(uncon)
+        }
+
+
         calcTreeStat()
     })
 });
@@ -107,41 +114,50 @@ function secStart(newSt){
     // https://stackoverflow.com/questions/24685152/check-if-all-tiles-are-connected
     $(".activeNode.start").toggleClass("activeNode")
     $(newSt).toggleClass("activeNode")
+    var uncon = checkUncon()
+    if(uncon){
+        console.log(uncon)
+    }
     calcTreeStat()
 }
 
 
 // check connected tiles
-function checkCon(id){
+function getAdjac(id){
     var row = parseInt(id.split("c")[0].replace(/r/g, ''))
     var col = parseInt(id.split("c")[1])
+    var adjNodes = {}
 
 
     //top
     if(row!=1 && checkAloc( (row-1), col )){
-        console.log("t")
-        return true
+        var node = $(".tile[data-id='r" + (row-1) + "c" + col +"']")
+        adjNodes[node.attr("data-id")] = node
     }
 
     //right
     if(col!=13 && checkAloc( row, (col+1) )){
-        console.log("r")
-        return true
+        var node = $(".tile[data-id='r" + row + "c" + (col+1) +"']")
+        adjNodes[node.attr("data-id")] = node
     }
 
     //bottom
     if(row!=15 && checkAloc( (row+1), col )){
-        console.log("b")
-        return true
+        var node = $(".tile[data-id='r" + (row+1) + "c" + col +"']")
+        adjNodes[node.attr("data-id")] = node
     }
 
     //left
     if(col!=1 && checkAloc( row, (col-1) )){
-        console.log("l")
-        return true
+        var node = $(".tile[data-id='r" + row + "c" + (col-1) +"']")
+        adjNodes[node.attr("data-id")] = node
     }
 
-    return false;
+    if(hasProp(adjNodes)){
+        return adjNodes
+    }else{
+        return false
+    }
 }
 
 function checkAloc(row, col){
@@ -403,3 +419,66 @@ function srvPost(action, successFn, jData) {
 function outputError(err){
     //console.log(err)
 }
+
+
+function hasProp(object) {
+    for (var prop in object) {
+        if (object.hasOwnProperty(prop)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+
+
+function checkUncon(){
+    var visited = breadthFirst()
+    var aloc = $(".activeNode")
+    var uncon = {}
+
+
+    for (var i = 0; i < aloc.length; i++) {
+        var id = $(aloc[i]).attr("data-id")
+        if(!visited[id]){
+            uncon[id] = aloc[i]
+        }
+    }
+
+    if(hasProp(uncon)){
+        return uncon
+    }else{
+        return false
+    }
+
+    //console.log("visited nodes: ")
+    //console.log(visited)
+
+}
+
+function breadthFirst() {
+    var start = $(".activeNode.start")
+    var visited = {};
+    visited[$(start).attr("data-id")] = start
+    var queue = [start];
+
+    while(queue.length) {
+        var current = queue.shift();
+        var adjNodes = getAdjac($(current).attr("data-id"))
+
+        for (var id in adjNodes) {
+            var node = adjNodes[id];
+
+            if (!visited[id]) {
+                visited[id] = node;
+                queue.push(node);
+            }
+        }
+
+    }
+    return visited;
+}
+
+//$(adjNodes[0]).attr("data-id")
