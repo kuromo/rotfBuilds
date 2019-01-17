@@ -269,8 +269,8 @@ function toggleNodes(nodeIds){
         $(".tile[data-id='" + nodeIds[x] +"']").toggleClass("activeNode")
     }
 
-    $("#treeModal").remove()
-    $(".modal-backdrop").remove()
+    window.setTimeout(function(){$("#treeModal").remove()},500)
+    
 
     calcTreeStat()
 }
