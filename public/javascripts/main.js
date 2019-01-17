@@ -89,7 +89,7 @@ $(function() {
 
         var uncon = checkUncon()
         if(uncon){
-            console.log(uncon)
+            handleUncon(this, uncon)
         }
 
 
@@ -112,11 +112,13 @@ function secStart(newSt){
     //TODO may ask if you want the change
     //TODO search if still all connected , link:
     // https://stackoverflow.com/questions/24685152/check-if-all-tiles-are-connected
-    $(".activeNode.start").toggleClass("activeNode")
+    var oldSt = $(".activeNode.start")
+    oldSt.toggleClass("activeNode")
     $(newSt).toggleClass("activeNode")
+
     var uncon = checkUncon()
     if(uncon){
-        console.log(uncon)
+        handleUncon(newSt, uncon, oldSt)
     }
     calcTreeStat()
 }
@@ -164,57 +166,114 @@ function checkAloc(row, col){
     return $(".tile[data-id='r" + row + "c" + col +"']").hasClass("activeNode")
 }
 
-function updateStats(stats){
-
-    //update tree stats
-    var str = ""
-
-    for (var stat in stats){
-        var val = stats[stat]
-        if(Number.isInteger(val)&&val !==0){
-            str += stat 
-            str += ":  " 
-            str += val 
-            str += "<br>" 
-        }
-    }
-
-    $("#tStatCont").html(str)
-
-
-    //update point counter
+function checkUncon(){
+    var visited = breadthFirst()
     var aloc = $(".activeNode")
-    $(".ptCount").text(aloc.length)
-}
-
-function calcTreeStat(){ 
-    var stats = new TStats()
+    var uncon = {}
 
 
-    $(".activeNode").each(function(){
-        var id = $(this).data("id")
-
-        var row = id.split("c")[0]
-        var col = "c" + id.split("c")[1]
-        if(tree[row][col].type == "start"){
-            calcStart(tree[row][col].val, stats)
-        }else{
-             stats[tree[row][col].type] += tree[row][col].val
+    for (var i = 0; i < aloc.length; i++) {
+        var id = $(aloc[i]).attr("data-id")
+        if(!visited[id]){
+            uncon[id] = aloc[i]
         }
-    })
-
-    updateStats(stats)
-}
-
-
-function calcStart(starter, stats){
-    for(var stat in stNodes[starter]){
-        stats[stat] += stNodes[starter][stat]
     }
+
+    if(hasProp(uncon)){
+        return uncon
+    }else{
+        return false
+    }
+
+    //console.log("visited nodes: ")
+    //console.log(visited)
+
 }
 
+function breadthFirst() {
+    var start = $(".activeNode.start")
+    var visited = {};
+    visited[$(start).attr("data-id")] = start
+    var queue = [start];
 
+    while(queue.length) {
+        var current = queue.shift();
+        var adjNodes = getAdjac($(current).attr("data-id"))
 
+        for (var id in adjNodes) {
+            var node = adjNodes[id];
+
+            if (!visited[id]) {
+                visited[id] = node;
+                queue.push(node);
+            }
+        }
+
+    }
+    return visited;
+}
+
+function handleUncon(clicked, uncon, oldSt){
+    var clickedId = $(clicked).attr("data-id")
+    var oldStId = $(oldSt).attr("data-id")
+    var unconStr = ""
+    for(var id in uncon){
+        unconStr += id
+        unconStr += ","
+    }
+    unconStr = unconStr.slice(0, -1);
+
+    if($(clicked).hasClass("start")){
+
+        var head = '<h5 class="modal-title">Start cahnge</h5>'
+        var body = '<p>'
+            + 'newSt:'
+            + clickedId
+            + 'oldSt:'
+            + oldStId
+        +'</p><p><h3>some nodes are unconnected</h3>'
+            + unconStr
+        +'</p>'
+        var foot = '<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="'
+            + 'toggleNodes(\'' + unconStr + '\')'
+            +'">Remove</button>'
+            +'<button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="'
+            + 'toggleNodes(\'' + clickedId + ',' + oldStId + '\')'
+            +'">Keep Old</button>'
+
+    }else{
+        var head = '<h5 class="modal-title">Unconnected ndoes</h5>'
+
+        var body = '<p>unalocated node:'
+        + clickedId
+        +'</p><p>will be unconnected:'
+        + unconStr
+        +'</p>'
+
+        var foot = '<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="'
+            + 'toggleNodes(\'' + unconStr + '\')'
+            +'">Remove</button>'
+            +'<button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="'
+            + 'toggleNodes(\'' + clickedId + '\')'
+            +'">Undo</button>'
+    }
+
+     createModal(head, body, foot) 
+
+}
+
+function toggleNodes(nodeIds){
+    nodeIds = nodeIds.split(",")
+
+    for(var x in nodeIds){
+        $(".tile[data-id='" + nodeIds[x] +"']").toggleClass("activeNode")
+    }
+
+    $("#treeModal").remove()
+    $(".modal-backdrop").remove()
+
+    calcTreeStat()
+}
 
 //___________________TreeStats_____________________
 
@@ -269,6 +328,55 @@ TStats.prototype.getPre = function() {
         wisPre: this.wisPre,
         atkPre: this.atkPre,
         defPre: this.defPre 
+    }
+}
+
+function updateStats(stats){
+
+    //update tree stats
+    var str = ""
+
+    for (var stat in stats){
+        var val = stats[stat]
+        if(Number.isInteger(val)&&val !==0){
+            str += stat 
+            str += ":  " 
+            str += val 
+            str += "<br>" 
+        }
+    }
+
+    $("#tStatCont").html(str)
+
+
+    //update point counter
+    var aloc = $(".activeNode")
+    $(".ptCount").text(aloc.length)
+}
+
+function calcTreeStat(){ 
+    var stats = new TStats()
+
+
+    $(".activeNode").each(function(){
+        var id = $(this).data("id")
+
+        var row = id.split("c")[0]
+        var col = "c" + id.split("c")[1]
+        if(tree[row][col].type == "start"){
+            calcStart(tree[row][col].val, stats)
+        }else{
+             stats[tree[row][col].type] += tree[row][col].val
+        }
+    })
+
+    updateStats(stats)
+}
+
+
+function calcStart(starter, stats){
+    for(var stat in stNodes[starter]){
+        stats[stat] += stNodes[starter][stat]
     }
 }
 
@@ -430,55 +538,25 @@ function hasProp(object) {
     return false;
 }
 
+function createModal(head, body, foot){
 
+    var modal = '<div id="treeModal" class="modal" tabindex="-1" role="dialog" show="true">'
+    +'<div class="modal-dialog" role="document">'
+        +'<div class="modal-content">'
+        +'<div class="modal-header">'
+            + head
+        +'</div>'
+        +'<div class="modal-body">'
+            + body
+        +'</div>'
+        +'<div class="modal-footer">'
+            + foot
+        +'</div>'
+        +'</div>'
+    +'</div>'
+    +'</div>'
 
-
-
-function checkUncon(){
-    var visited = breadthFirst()
-    var aloc = $(".activeNode")
-    var uncon = {}
-
-
-    for (var i = 0; i < aloc.length; i++) {
-        var id = $(aloc[i]).attr("data-id")
-        if(!visited[id]){
-            uncon[id] = aloc[i]
-        }
-    }
-
-    if(hasProp(uncon)){
-        return uncon
-    }else{
-        return false
-    }
-
-    //console.log("visited nodes: ")
-    //console.log(visited)
-
+    $("#mainCont").append( modal )   
+    $("#treeModal").modal({backdrop: 'static', keyboard: false}) 
+    $("#treeModal").modal("show") 
 }
-
-function breadthFirst() {
-    var start = $(".activeNode.start")
-    var visited = {};
-    visited[$(start).attr("data-id")] = start
-    var queue = [start];
-
-    while(queue.length) {
-        var current = queue.shift();
-        var adjNodes = getAdjac($(current).attr("data-id"))
-
-        for (var id in adjNodes) {
-            var node = adjNodes[id];
-
-            if (!visited[id]) {
-                visited[id] = node;
-                queue.push(node);
-            }
-        }
-
-    }
-    return visited;
-}
-
-//$(adjNodes[0]).attr("data-id")
