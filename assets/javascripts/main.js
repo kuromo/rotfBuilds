@@ -224,14 +224,12 @@ function handleUncon(clicked, uncon, oldSt){
     if($(clicked).hasClass("start")){
 
         var head = '<h5 class="modal-title">Start cahnge</h5>'
-        var body = '<p>'
-            + 'newSt:'
-            + clickedId
+        var body = 'newSt:'
+            + statById(clickedId).toModal()
             + 'oldSt:'
-            + oldStId
-        +'</p><p><h3>some nodes are unconnected</h3>'
-            + unconStr
-        +'</p>'
+            + statById(oldStId).toModal()
+        +'<h3>some nodes are unconnected</h3>'
+            + statById(unconStr).toModal()
         var foot = '<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="'
             + 'toggleNodes(\'' + unconStr + '\')'
             +'">Remove</button>'
@@ -242,11 +240,10 @@ function handleUncon(clicked, uncon, oldSt){
     }else{
         var head = '<h5 class="modal-title">Unconnected ndoes</h5>'
 
-        var body = '<p>unalocated node:'
-        + clickedId
-        +'</p><p>will be unconnected:'
-        + unconStr
-        +'</p>'
+        var body = 'unalocated node:'
+        + statById(clickedId).toModal()
+        +'will be unconnected:'
+        + statById(unconStr).toModal()
 
         var foot = '<button type="button" class="btn btn-primary" data-dismiss="modal" onClick="'
             + 'toggleNodes(\'' + unconStr + '\')'
@@ -271,6 +268,26 @@ function toggleNodes(nodeIds){
     
 
     calcTreeStat()
+}
+
+function statById(nodeIds){
+    var stats = new TStats()
+    nodeIds = nodeIds.split(",")
+
+    for(var x in nodeIds){
+
+        var row = nodeIds[x].split("c")[0]
+        var col = "c" + nodeIds[x].split("c")[1]
+        if(tree[row][col].type == "start"){
+            for(var stat in stNodes[tree[row][col].val]){
+                stats[stat] += stNodes[tree[row][col].val][stat]
+            }
+        }else{
+             stats[tree[row][col].type] += tree[row][col].val
+        }
+    }
+    console.log(stats.getActive())
+    return stats.getActive()
 }
 
 //___________________TreeStats_____________________
@@ -328,6 +345,27 @@ TStats.prototype.getPre = function() {
         defPre: this.defPre 
     }
 }
+
+TStats.prototype.getActive = function() {
+    var activeStats = {}
+    for(var stat in this){
+        if(this[stat]!=0)
+            activeStats[stat] = this[stat]
+    }
+
+    return activeStats
+}
+
+TStats.prototype.toModal = function() {
+    var html = '<div class="modalStats">'
+    for(var stat in this){
+        if(typeof this[stat] != 'function')
+            html += '<b>' + stat + ': </b>' +this[stat] + '<br/>'
+    }
+    html += '</div>'
+    return html
+}
+
 
 function updateStats(stats){
 
