@@ -417,6 +417,12 @@ function calcStart(starter, stats){
 }
 
 
+function changeClass(newCls){
+    console.log(newCls)
+    var imgSrc = "/img/classes/" + newCls + ".png"
+    $(".classIcon").attr('src', imgSrc)
+}
+
 
 
 //___________________NAV_____________________

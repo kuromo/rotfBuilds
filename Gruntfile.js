@@ -22,7 +22,11 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       extJS: {
-        src: ['assets/ext/*.js'],
+        src: [
+          'assets/ext/bootstrap.bundle.js',
+          'assets/ext/bootstrap.js', 
+          'assets/ext/skrollr.min.js'
+        ],
         dest: 'public/javascripts/ext.js'
       },
       extCSS: {
@@ -84,6 +88,7 @@ module.exports = function(grunt) {
         files: [{
           cwd: 'node_modules/',
           src: [
+            'bootstrap/dist/js/bootstrap.bundle.js',
             'bootstrap/dist/js/bootstrap.js', 
             'bootstrap/dist/css/bootstrap.css', 
             'skrollr/dist/skrollr.min.js'

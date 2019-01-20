@@ -10,14 +10,41 @@ block content
 				span /82
 
 	section#treeTree.row
-		#treeCont.container
-			.tileWrap
-				each row, rId in tree
-					each col, cId in row
-						div(class="tile #{ col.type }" data-id="#{ rId+cId }")
-							.tileCont 
-								p #{ col.type }
-								p #{ col.val }
-
-	section#tStat.row
-		#tStatCont.container
+		#treeWrap
+			#treeCont.treeSub
+				.tileWrap
+					each row, rId in tree
+						each col, cId in row
+							div(class="tile #{ col.type }" data-id="#{ rId+cId }")
+								.tileCont 
+									p #{ col.type }
+									p #{ col.val }
+			#tStatCont.treeSub
+				#smNodes
+					button.smNode
+					button.smNode
+					button.smNode
+					button.smNode
+					button.smNode
+					button.smNode
+					button.smNode
+					button.smNode
+				#bigNodes
+					select#bNodeRed.bNode.selectpicker
+						option.blis(data-thumbnail="img/looter.jpg") blisfull
+						option.rotb(data-thumbnail="img/looter.jpg") regeneratin of the
+					select.bNode
+					select.bNode
+					select.bNode
+				#charFrame
+					.dropdown
+						button.btn.btn-default.dropdown-toggle(type="button" data-toggle="collapse" data-target="#classDD" aria-controls="navbarDropdown" aria-expanded="false")
+							img.classIcon(src="img/classes/wizard.png")
+						#classDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
+							.classDDItem(role="menuitem" onClick="changeClass('wizard')") 
+								img(src="img/classes/wizard.png") 
+								span Wizzard
+							.classDDItem(role="menuitem" onClick="changeClass('priest')") 
+								img(src="img/classes/priest.png") 
+								span Priest
+				#advancedStats

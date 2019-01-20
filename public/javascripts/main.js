@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-18
+/*! rotfBuilds - v0.0.0 - 2019-01-20
 * Copyright (c) 2019 ;*/
 //GLOBALS
 var gSrv = "http://localhost:3000/"
@@ -418,6 +418,12 @@ function calcStart(starter, stats){
     }
 }
 
+
+function changeClass(newCls){
+    console.log(newCls)
+    var imgSrc = "/img/classes/" + newCls + ".png"
+    $(".classIcon").attr('src', imgSrc)
+}
 
 
 

@@ -34,15 +34,56 @@
   width: 100%;
 }
 
+.start{
 
-#treeTbl{
-	background-color: #00F;
+	background: url("../img/looter.jpg") no-repeat center; 
+			-webkit-background-size: contain;
+		-moz-background-size: contain;
+		-o-background-size: contain;
+		background-size: contain;
 }
 
-#treeTbl td{
-	
-
+#treeWrap {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
 }
+
+.treeSub{
+	flex: 1 100%;
+	padding: 10px;
+}
+
+.ttest{
+  width: 100%;
+}
+
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+	/* We tell both sidebars to share a row */
+	#treeCont{ flex: 3 auto; }
+	#tStatCont{ flex: 2 auto; }
+}
+
+.tile:hover {
+	opacity: .9;
+}
+
+.activeNode{
+	opacity: 1;
+}
+
+
+
+
+.dropdown img{
+	width: 64px;
+}
+
+
+
+
 
 .vit{	
 	background-color: #ec1313; 
@@ -122,28 +163,4 @@
 
 .defPre{	
 	background-color: #a6a6a6; 
-}
-
-
-.start{
-
-	background: url("../img/looter.jpg") no-repeat center; 
-			-webkit-background-size: contain;
-		-moz-background-size: contain;
-		-o-background-size: contain;
-		background-size: contain;
-}
-
-
-
-
-
-
-
-.tile:hover {
-	opacity: .9;
-}
-
-.activeNode{
-	opacity: 1;
 }
