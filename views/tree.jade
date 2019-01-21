@@ -43,43 +43,38 @@ block content
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune(type="button" data-toggle="collapse" data-target="#runeRedDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.rRuneIcon(src="img/runes/rHolder.png")
-						#runeRedDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Looter
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Other R
+						#runeRedDD.dropdown-menu.runeDD(role="menu" aria-labelledby="classDDBtn")
+							each rune, short in bRunes
+								if(rune.color == "red")
+									.runeDDItem(role="menuitem" onClick="") 
+										img(src="img/runes/#{ short }.png") 
+										.runeName #{ rune.name }
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune(type="button" data-toggle="collapse" data-target="#runeGreenDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.gRuneIcon(src="img/runes/gHolder.png")
-						#runeGreenDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Looter
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Other G
+						#runeGreenDD.dropdown-menu.runeDD(role="menu" aria-labelledby="classDDBtn")
+							each rune, short in bRunes
+								if(rune.color == "green")
+									.runeDDItem(role="menuitem" onClick="") 
+										img(src="img/runes/#{ short }.png") 
+										.runeName #{ rune.name }
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune(type="button" data-toggle="collapse" data-target="#runeBlueDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.bRuneIcon(src="img/runes/bHolder.png")
-						#runeBlueDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Looter
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Other B 
+						#runeBlueDD.dropdown-menu.runeDD(role="menu" aria-labelledby="classDDBtn")
+							each rune, short in bRunes
+								if(rune.color == "blue")
+									.runeDDItem(role="menuitem" onClick="") 
+										img(src="img/runes/#{ short }.png") 
+										.runeName #{ rune.name } 
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune(type="button" data-toggle="collapse" data-target="#runeAllDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.aRuneIcon(src="img/runes/aHolder.png")
-						#runeAllDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Looter
-							.runeDDItem(role="menuitem" onClick="") 
-								img(src="img/looter.jpg") 
-								span Other A	
+						#runeAllDD.dropdown-menu.runeDD(role="menu" aria-labelledby="classDDBtn")
+							each rune, short in bRunes
+								.runeDDItem(role="menuitem" onClick="") 
+									img(src="img/runes/#{ short }.png") 
+									.runeName #{ rune.name }
 				h3 character stats							
 				#charFrame
 					.dropdown

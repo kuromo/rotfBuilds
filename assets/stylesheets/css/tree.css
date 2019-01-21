@@ -32,6 +32,22 @@
     flex: 1 auto;
   }
 }
+.runeDDItem {
+  flex: 1 auto;
+  max-width: 130px;
+  min-width: 120px;
+  text-align: center;
+}
+
+.runeDD {
+  flex-flow: row wrap;
+  width: 400px;
+}
+
+.runeDD.show {
+  display: flex;
+}
+
 #bigRunes {
   width: 100%;
   display: flex;
@@ -50,6 +66,7 @@
 
 .smRune img {
   opacity: 0.5;
+  width: 48px;
 }
 
 .smRune.active img {
