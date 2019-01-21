@@ -1,5 +1,79 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-20
+/*! rotfBuilds - v0.0.0 - 2019-01-21
 * Copyright (c) 2019 ;*/
+var bRunes = {
+	perf : {
+		name: "Perfectionist", 
+		color: "red"
+	},
+	consi : {
+		name: "Consistent Onslaugh", 
+		color: "red"
+	},
+	mana : {
+		name: "Mana Hunger", 
+		color: "red"
+	},
+	narr : {
+		name: "Narrow Sighted Magic", 
+		color: "red"
+	},
+	aggr : {
+		name: "Aggressive Aggitator", 
+		color: "red"
+	},
+	adre : {
+		name: "Adrenaline Rush", 
+		color: "red"
+	},
+	regen: {
+		name: "Regeneration of the Brute",
+		color: "green"
+	},
+	bid: {
+		name: "Biding Time",
+		color: "green"
+	},
+	arca: {
+		name: "Arcane Surge",
+		color: "green"
+	},
+	blood: {
+		name: "Blood Pact",
+		color: "green"
+	},
+	bulw: {
+		name: "Bulwark of the Surgeon",
+		color: "green"
+	},
+	bliss: {
+		name: "Blissful Ignorance",
+		color: "green"
+	},
+	resto : {
+		name: "Restoration Temptation",
+		color: "blue"
+	},
+	pot : {
+		name: "Pot Head",
+		color: "blue"
+	},
+	solo : {
+		name: "Solo Thief",
+		color: "blue"
+	},
+	eye : {
+		name: "Eye for an Eye"	,
+		color: "blue"
+	},
+	dread : {
+		name: "Dreadstump's Greed",
+		color: "blue"
+	},
+	rare : {
+		name: "Rare Obsession",
+		color: "blue"
+	}
+}
 var classes = {
 	archer: {
 		hp: 700,
@@ -12,27 +86,27 @@ var classes = {
 		wis: 50
 	},
 	assassin: {
-		hp: 720,
-		mp: 252,
-		att: 60,
-		def: 25,
-		spd: 75,
+		hp: 700,
+		mp: 278,
+		att: 65,
+		def: 20,
+		spd: 80,
 		dex: 75,
-		vit: 40,
-		wis: 60
+		vit: 35,
+		wis: 70
 	},
 	huntress: {
-		hp: 670,
-		mp: 385,
+		hp: 700,
+		mp: 252,
 		att: 75,
 		def: 25,
 		spd: 50,
-		dex: 60,
+		dex: 50,
 		vit: 40,
 		wis: 50
 	},
 	knight: {
-		hp: 770,
+		hp: 855,
 		mp: 252,
 		att: 50,
 		def: 40,
@@ -47,35 +121,35 @@ var classes = {
 		att: 60,
 		def: 25,
 		spd: 60,
-		dex: 55,
+		dex: 80,
 		vit: 40,
 		wis: 75
 	},
 	necromancer: {
 		hp: 670,
 		mp: 385,
-		att: 73,
+		att: 75,
 		def: 25,
 		spd: 50,
-		dex: 30,
+		dex: 60,
 		vit: 30,
 		wis: 75
 	},
 	ninja: {
-		hp: 720,
+		hp: 770,
 		mp: 252,
 		att: 70,
 		def: 25,
 		spd: 60,
 		dex: 70,
-		vit: 40,
+		vit: 45,
 		wis: 70
 	},
 	paladin: {
-		hp: 770,
-		mp: 255,
+		hp: 855,
+		mp: 252,
 		att: 50,
-		def: 30,
+		def: 35,
 		spd: 55,
 		dex: 45,
 		vit: 40,
@@ -84,17 +158,17 @@ var classes = {
 	priest: {
 		hp: 670,
 		mp: 385,
-		att: 50,
+		att: 55,
 		def: 25,
 		spd: 55,
-		dex: 55,
+		dex: 60,
 		vit: 40,
 		wis: 75
 	},
 	rogue: {
 		hp: 720,
 		mp: 252,
-		att: 50,
+		att: 60,
 		def: 25,
 		spd: 75,
 		dex: 75,
@@ -109,23 +183,23 @@ var classes = {
 		spd: 60,
 		dex: 60,
 		vit: 75,
-		wis: 60
+		wis: 75
 	},
 	trickster: {
 		hp: 720,
 		mp: 252,
-		att: 65,
+		att: 80,
 		def: 25,
 		spd: 75,
-		dex: 75,
-		vit: 40,
+		dex: 70,
+		vit: 50,
 		wis: 60
 	},
 	warrior: {
-		hp: 770,
+		hp: 855,
 		mp: 252,
 		att: 75,
-		def: 25,
+		def: 30,
 		spd: 50,
 		dex: 50,
 		vit: 75,
@@ -140,6 +214,40 @@ var classes = {
 		dex: 75,
 		vit: 40,
 		wis: 60
+	}
+}
+var sRunes = {
+	hp:{
+		name: "Mini Health",
+		value: 30
+	},
+	mp:{
+		name: "Mini Magic",
+		value: 30
+	},
+	att:{
+		name: "Mini Strength",
+		value: 3
+	},
+	def:{
+		name: "Mini Protection",
+		value: 3
+	},
+	spd:{
+		name: "Mini Mobility",
+		value: 3
+	},
+	dex:{
+		name: "Mini Precision",
+		value: 3
+	},
+	vit:{
+		name: "Mini Spirit",
+		value: 3
+	},
+	wis:{
+		name: "Mini Enlightenment",
+		value: 3
 	}
 }
 var tree = {

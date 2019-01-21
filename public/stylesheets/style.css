@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-20
+/*! rotfBuilds - v0.0.0 - 2019-01-21
 * Copyright (c) 2019 ;*/
 .row {
   margin: 0;
@@ -21,18 +21,6 @@ section {
   background-color: #dda;
 }
 
-#treeTop {
-  background-color: #ada;
-}
-
-#treeTree {
-  background-color: #8b8;
-}
-
-#tStat {
-  background-color: #ada;
-}
-
 /*
 #header{
 	height:400px;
@@ -49,6 +37,62 @@ section {
 */
 
 /*# sourceMappingURL=main.css.map */
+
+#treeTop {
+  background-color: #ada;
+}
+
+#treeTree {
+  background-color: #737373;
+}
+
+#tStatCont {
+  background-color: #363636;
+}
+
+#treeWrap {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.treeSub {
+  flex: 1 100%;
+  padding: 10px;
+}
+
+.ttest {
+  width: 100%;
+}
+
+/* Medium screens */
+@media all and (min-width: 800px) {
+  /* We tell both sidebars to share a row */
+  #treeCont {
+    flex: 2 auto;
+  }
+
+  #tStatCont {
+    flex: 1 auto;
+  }
+}
+#bigRunes {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.runeSel {
+  flex: 1 auto;
+}
+
+.dropdown img {
+  width: 64px;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
 
 .tileWrap {
   display: flex;
@@ -97,42 +141,12 @@ section {
   background-size: contain;
 }
 
-#treeWrap {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.treeSub {
-  flex: 1 100%;
-  padding: 10px;
-}
-
-.ttest {
-  width: 100%;
-}
-
-/* Medium screens */
-@media all and (min-width: 600px) {
-  /* We tell both sidebars to share a row */
-  #treeCont {
-    flex: 3 auto;
-  }
-
-  #tStatCont {
-    flex: 2 auto;
-  }
-}
 .tile:hover {
   opacity: 0.9;
 }
 
 .activeNode {
   opacity: 1;
-}
-
-.dropdown img {
-  width: 64px;
 }
 
 .vit {

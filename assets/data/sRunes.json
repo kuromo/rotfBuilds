@@ -1,0 +1,34 @@
+var sRunes = {
+	hp:{
+		name: "Mini Health",
+		value: 30
+	},
+	mp:{
+		name: "Mini Magic",
+		value: 30
+	},
+	att:{
+		name: "Mini Strength",
+		value: 3
+	},
+	def:{
+		name: "Mini Protection",
+		value: 3
+	},
+	spd:{
+		name: "Mini Mobility",
+		value: 3
+	},
+	dex:{
+		name: "Mini Precision",
+		value: 3
+	},
+	vit:{
+		name: "Mini Spirit",
+		value: 3
+	},
+	wis:{
+		name: "Mini Enlightenment",
+		value: 3
+	}
+}

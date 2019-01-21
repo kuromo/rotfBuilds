@@ -20,22 +20,67 @@ block content
 									p #{ col.type }
 									p #{ col.val }
 			#tStatCont.treeSub
-				#smNodes
-					button.smNode
-					button.smNode
-					button.smNode
-					button.smNode
-					button.smNode
-					button.smNode
-					button.smNode
-					button.smNode
-				#bigNodes
-					select#bNodeRed.bNode.selectpicker
-						option.blis(data-thumbnail="img/looter.jpg") blisfull
-						option.rotb(data-thumbnail="img/looter.jpg") regeneratin of the
-					select.bNode
-					select.bNode
-					select.bNode
+				h3 small runes
+				#smRune
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+					button.smRune.btn.btn-default
+						img.rRuneIcon(src="img/looter.jpg")
+				h3 big runes
+				#bigRunes
+					.dropdown.runeSel
+						button.btn.btn-default.dropdown-toggle(type="button" data-toggle="collapse" data-target="#runeRedDD" aria-controls="navbarDropdown" aria-expanded="false")
+							img.rRuneIcon(src="img/looter.jpg")
+						#runeRedDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Looter
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Other R
+					.dropdown.runeSel
+						button.btn.btn-default.dropdown-toggle(type="button" data-toggle="collapse" data-target="#runeGreenDD" aria-controls="navbarDropdown" aria-expanded="false")
+							img.gRuneIcon(src="img/looter.jpg")
+						#runeGreenDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Looter
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Other G
+					.dropdown.runeSel
+						button.btn.btn-default.dropdown-toggle(type="button" data-toggle="collapse" data-target="#runeBlueDD" aria-controls="navbarDropdown" aria-expanded="false")
+							img.bRuneIcon(src="img/looter.jpg")
+						#runeBlueDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Looter
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Other B 
+					.dropdown.runeSel
+						button.btn.btn-default.dropdown-toggle(type="button" data-toggle="collapse" data-target="#runeAllDD" aria-controls="navbarDropdown" aria-expanded="false")
+							img.aRuneIcon(src="img/looter.jpg")
+						#runeAllDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Looter
+							.runeDDItem(role="menuitem" onClick="") 
+								img(src="img/looter.jpg") 
+								span Other A	
+				h3 character stats							
 				#charFrame
 					.dropdown
 						button.btn.btn-default.dropdown-toggle(type="button" data-toggle="collapse" data-target="#classDD" aria-controls="navbarDropdown" aria-expanded="false")

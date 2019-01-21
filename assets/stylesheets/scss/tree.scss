@@ -1,3 +1,58 @@
+
+#treeTop{
+	background-color: #ada;
+}
+
+#treeTree{
+	background-color: #737373;
+}
+
+#tStatCont{
+	background-color: #363636;
+}
+
+
+#treeWrap {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.treeSub{
+	flex: 1 100%;
+	padding: 10px;
+}
+
+.ttest{
+  width: 100%;
+}
+
+/* Medium screens */
+@media all and (min-width: 800px) {
+	/* We tell both sidebars to share a row */
+	#treeCont{ flex: 2 auto; }
+	#tStatCont{ flex: 1 auto; }
+}
+
+#bigRunes {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.runeSel{
+	flex: 1 auto;
+}
+ 
+.dropdown img{
+	width: 64px;
+}
+
+.dropdown-toggle::after {
+    display:none;
+}
+
+
 .tileWrap {
   display: flex;
   flex-wrap: wrap;
@@ -43,29 +98,6 @@
 		background-size: contain;
 }
 
-#treeWrap {
-	width: 100%;
-	display: flex;
-	flex-flow: row wrap;
-}
-
-.treeSub{
-	flex: 1 100%;
-	padding: 10px;
-}
-
-.ttest{
-  width: 100%;
-}
-
-
-/* Medium screens */
-@media all and (min-width: 600px) {
-	/* We tell both sidebars to share a row */
-	#treeCont{ flex: 3 auto; }
-	#tStatCont{ flex: 2 auto; }
-}
-
 .tile:hover {
 	opacity: .9;
 }
@@ -73,15 +105,6 @@
 .activeNode{
 	opacity: 1;
 }
-
-
-
-
-.dropdown img{
-	width: 64px;
-}
-
-
 
 
 
