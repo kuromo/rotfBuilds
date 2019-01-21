@@ -61,10 +61,6 @@ section {
   padding: 10px;
 }
 
-.ttest {
-  width: 100%;
-}
-
 /* Medium screens */
 @media all and (min-width: 800px) {
   /* We tell both sidebars to share a row */
@@ -82,8 +78,22 @@ section {
   flex-flow: row wrap;
 }
 
-.runeSel {
-  flex: 1 auto;
+/*
+.runeSel{
+	flex: 1 auto;
+}*/
+.smRune, .bigRune {
+  background-color: #545454;
+  padding: 2px 7px;
+  margin: 5px;
+}
+
+.smRune img {
+  opacity: 0.5;
+}
+
+.smRune.active img {
+  opacity: 1;
 }
 
 .dropdown img {
@@ -94,6 +104,7 @@ section {
   display: none;
 }
 
+/* tree tiles */
 .tileWrap {
   display: flex;
   flex-wrap: wrap;
