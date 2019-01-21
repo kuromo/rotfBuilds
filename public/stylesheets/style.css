@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-21
+/*! rotfBuilds - v0.0.0 - 2019-01-22
 * Copyright (c) 2019 ;*/
 .row {
   margin: 0;
@@ -62,14 +62,14 @@ section {
 }
 
 /* Medium screens */
-@media all and (min-width: 800px) {
+@media all and (min-width: 1200px) {
   /* We tell both sidebars to share a row */
   #treeCont {
     flex: 2 auto;
   }
 
   #tStatCont {
-    flex: 1 auto;
+    flex: 0 auto;
   }
 }
 .runeDDItem {
@@ -82,16 +82,27 @@ section {
 .runeDD {
   flex-flow: row wrap;
   width: 400px;
+  background-color: #464646;
+  padding: 5px;
 }
 
 .runeDD.show {
   display: flex;
 }
 
+.runeDDItem:hover {
+  background-color: #545454;
+  border-radius: 5px;
+}
+
 #bigRunes {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
+}
+
+.bigRune:not(.collapsed) {
+  box-shadow: 0px 0px 0 2px #ffbb00;
 }
 
 /*
