@@ -15,7 +15,7 @@ block content
 				.tileWrap
 					each row, rId in tree
 						each col, cId in row
-							div(class="tile #{ col.type }" data-id="#{ rId+cId }")
+							div(class="tile #{ col.type }" data-id="#{ rId+cId }" data-value="#{ col.val }")
 								.tileCont 
 									p #{ col.type }
 									p #{ col.val }

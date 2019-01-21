@@ -133,12 +133,36 @@ section {
   width: 100%;
 }
 
-.start {
-  background: url("../img/looter.jpg") no-repeat center;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
+.start[data-value=adep] {
+  background: url("../img/starts/adep.png") no-repeat center;
+}
+
+.start[data-value=butch] {
+  background: url("../img/starts/butch.png") no-repeat center;
+}
+
+.start[data-value=infi] {
+  background: url("../img/starts/infi.png") no-repeat center;
+}
+
+.start[data-value=jugg] {
+  background: url("../img/starts/jugg.png") no-repeat center;
+}
+
+.start[data-value=loot] {
+  background: url("../img/starts/loot.png") no-repeat center;
+}
+
+.start[data-value=mani] {
+  background: url("../img/starts/mani.png") no-repeat center;
+}
+
+.start[data-value=sent] {
+  background: url("../img/starts/sent.png") no-repeat center;
+}
+
+.start[data-value=surv] {
+  background: url("../img/starts/surv.png") no-repeat center;
 }
 
 .tile:hover {
