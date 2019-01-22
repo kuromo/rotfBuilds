@@ -77,14 +77,13 @@ block content
 									.runeName #{ rune.name }
 				h3 character stats							
 				#charFrame
-					.dropdown
-						button.btn.btn-default.dropdown-toggle(type="button" data-toggle="collapse" data-target="#classDD" aria-controls="navbarDropdown" aria-expanded="false")
-							img.classIcon(src="img/classes/wizard.png")
+					.dropdown.classSec
+						button.btn.btn-default.dropdown-toggle.classDDBtn.collapsed(type="button" data-toggle="collapse" data-target="#classDD" aria-controls="navbarDropdown" aria-expanded="false")
+							img.classIcon(src="img/classes/holder.png")
 						#classDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
-							.classDDItem(role="menuitem" onClick="changeClass('wizard')") 
-								img(src="img/classes/wizard.png") 
-								span Wizzard
-							.classDDItem(role="menuitem" onClick="changeClass('priest')") 
-								img(src="img/classes/priest.png") 
-								span Priest
+								each cls, cName in classes
+									.classDDItem(role="menuitem" onClick="changeClass('#{ cName }')")
+										img(src="img/classes/#{ cName }.png") 
+										.className #{ cName }
+
 				#advancedStats

@@ -132,6 +132,40 @@ section {
   display: none;
 }
 
+.classDDItem {
+  flex: 1 auto;
+  max-width: 110px;
+  min-width: 100px;
+  text-align: center;
+}
+
+#classDD {
+  flex-flow: row wrap;
+  width: 550px;
+  background-color: #464646;
+  padding: 5px;
+  justify-content: space-around;
+}
+
+#classDD.show {
+  display: flex;
+}
+
+.classDDItem:hover {
+  background-color: #545454;
+  border-radius: 5px;
+}
+
+.classDDBtn {
+  background-color: #545454;
+  padding: 2px 7px;
+  margin: 5px;
+}
+
+.classDDBtn:not(.collapsed) {
+  box-shadow: 0px 0px 0 2px #ffbb00;
+}
+
 /* tree tiles */
 .tileWrap {
   display: flex;
