@@ -13,6 +13,23 @@ $(function() {
 
 
 
+//___________________RUNES_____________________
+
+function toggleSmRune(stat){
+    
+    console.log($(".rRuneIcon.active"))
+    var nodeClass = "." + stat+"SmR"
+    console.log($(nodeClass))
+    $(nodeClass).toggleClass("active")
+}
+
+
+
+
+
+
+
+
 
 //___________________TREE_____________________
 
@@ -384,7 +401,7 @@ function updateStats(stats){
         }
     }
 
-    $("#tStatCont").html(str)
+    $("#normalStats").html(str)
 
 
     //update point counter

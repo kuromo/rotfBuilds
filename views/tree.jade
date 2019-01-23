@@ -22,21 +22,21 @@ block content
 			#tStatCont.treeSub
 				h3 small runes
 				#smRune
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.hpSmR(  onClick="toggleSmRune('hp')" data-type:"hp")
 						img.rRuneIcon(src="img/runes/hp.png")
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.mpSmR(  onClick="toggleSmRune('mp')" data-type:"mp")
 						img.rRuneIcon(src="img/runes/mp.png")
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.attSmR(  onClick="toggleSmRune('att')" data-type:"att")
 						img.rRuneIcon(src="img/runes/att.png")
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.defSmR(  onClick="toggleSmRune('def')" data-type:"def")
 						img.rRuneIcon(src="img/runes/def.png")
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.spdSmR(  onClick="toggleSmRune('spd')" data-type:"spd")
 						img.rRuneIcon(src="img/runes/spd.png")
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.dexSmR(  onClick="toggleSmRune('dex')" data-type:"dex")
 						img.rRuneIcon(src="img/runes/dex.png")
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.vitSmR(  onClick="toggleSmRune('vit')" data-type:"vit")
 						img.rRuneIcon(src="img/runes/vit.png")
-					button.smRune.btn.btn-default
+					button.smRune.btn.btn-default.wisSmR(  onClick="toggleSmRune('wis')" data-type:"wis")
 						img.rRuneIcon(src="img/runes/wis.png")
 				h3 big runes
 				#bigRunes
@@ -85,5 +85,6 @@ block content
 									.classDDItem(role="menuitem" onClick="changeClass('#{ cName }')")
 										img(src="img/classes/#{ cName }.png") 
 										.className #{ cName }
+					#normalStats
 
 				#advancedStats
