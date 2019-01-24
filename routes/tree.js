@@ -14,6 +14,7 @@ module.exports.controller = function(app) {
 		opt.bRunes = bRunes
 		opt.sRunes = sRunes
 		opt.classes = classes
+		opt.nodeNames = nodeNames
 
 		BC.getTree(res, 'tree', opt)
 
@@ -21,6 +22,69 @@ module.exports.controller = function(app) {
 
 
 	});
+}
+
+var nodeNames = {
+	vit: {
+		name: "Vit"
+	},
+	vitPre: {
+		name: "%Vit"
+	},
+	dex: {
+		name: "Dex"
+	},
+	dexPre: {
+		name: "%Dex"
+	},
+	lootPre: {
+		name: "%Loot"
+	},
+	mp: {
+		name: "Mp"
+	},
+	mpPre: {
+		name: "%Mp"
+	},
+	eva: {
+		name: "Eva"
+	},
+	evaPre: {
+		name: "%Eva"
+	},
+	spd: {
+		name: "Spd"
+	},
+	spdPre: {
+		name: "%Spd"
+	},
+	hp: {
+		name: "Hp"
+	},
+	hpPre: {
+		name: "%Hp"
+	},
+	wis: {
+		name: "Wis"
+	},
+	wisPre: {
+		name: "%Wis"
+	},
+	rof: {
+		name: "%Rof"
+	},
+	atk: {
+		name: "Atk"
+	},
+	atkPre: {
+		name: "%Atk"
+	},
+	def: {
+		name: "Def"
+	},
+	defPre: {
+		name: "%Def"
+	}
 }
 
 var sRunes = {

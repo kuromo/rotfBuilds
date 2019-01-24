@@ -17,8 +17,9 @@ block content
 						each col, cId in row
 							div(class="tile #{ col.type }" data-id="#{ rId+cId }" data-value="#{ col.val }")
 								.tileCont 
-									p #{ col.type }
-									p #{ col.val }
+									if(col.type != "start")
+										.tileName #{ nodeNames[col.type].name }
+										.tileValue #{ col.val }
 			#tStatCont.treeSub
 				h3 small runes
 				#smRune

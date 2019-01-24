@@ -276,7 +276,6 @@ section {
   border-radius: 5px;
   text-align: center;
   opacity: 0.6;
-  box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.9);
   -webkit-user-select: none;
   /* Safari */
   -moz-user-select: none;
@@ -295,10 +294,26 @@ section {
 
 .tileCont {
   position: absolute;
+  top: 5%;
+  left: 5%;
+  height: 90%;
+  width: 90%;
+  border: solid 0.4em #363636;
+  border-radius: 0.7em;
+}
+
+.tileName {
+  position: absolute;
   top: 0;
-  left: 0;
-  height: 100%;
+  margin-top: -5px;
   width: 100%;
+}
+
+.tileValue {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: -5px;
 }
 
 .start[data-value=adep] {
@@ -341,84 +356,164 @@ section {
   opacity: 1;
 }
 
-.vit {
-  background-color: #ec1313;
+.vit .tileCont {
+  background: url("../img/nodes/vit.png") no-repeat center;
 }
 
-.vitPre {
-  background-color: #b81414;
+.vit.activeNode .tileCont {
+  border-color: #ec1313;
 }
 
-.dex {
-  background-color: #ff4000;
+.vitPre .tileCont {
+  background: url("../img/nodes/vitPre.png") no-repeat center;
 }
 
-.dexPre {
-  background-color: #cc3300;
+.vitPre.activeNode .tileCont {
+  border-color: #b81414;
 }
 
-.lootPre {
-  background-color: #ff794d;
+.dex .tileCont {
+  background: url("../img/nodes/dex.png") no-repeat center;
 }
 
-.mp {
-  background-color: #ffff80;
+.dex.activeNode .tileCont {
+  border-color: #ff4000;
 }
 
-.mpPre {
-  background-color: #ebeb47;
+.dexPre .tileCont {
+  background: url("../img/nodes/dexPre.png") no-repeat center;
 }
 
-.eva {
-  background-color: #c9fa38;
+.dexPre.activeNode .tileCont {
+  border-color: #cc3300;
 }
 
-.evaPre {
-  background-color: #ace600;
+.lootPre .tileCont {
+  background: url("../img/nodes/lootPre.png") no-repeat center;
 }
 
-.spd {
-  background-color: #4dbd28;
+.lootPre.activeNode .tileCont {
+  border-color: #ff794d;
 }
 
-.spdPre {
-  background-color: #418a28;
+.mp .tileCont {
+  background: url("../img/nodes/mp.png") no-repeat center;
 }
 
-.hp {
-  background-color: #30e8e8;
+.mp.activeNode .tileCont {
+  border-color: #ffff80;
 }
 
-.hpPre {
-  background-color: #14b8b8;
+.mpPre .tileCont {
+  background: url("../img/nodes/mpPre.png") no-repeat center;
 }
 
-.wis {
-  background-color: #2559f4;
+.mpPre.activeNode .tileCont {
+  border-color: #ebeb47;
 }
 
-.wisPre {
-  background-color: #1236a1;
+.eva .tileCont {
+  background: url("../img/nodes/eva.png") no-repeat center;
 }
 
-.rof {
-  background-color: #cc667f;
+.eva.activeNode .tileCont {
+  border-color: #c9fa38;
 }
 
-.atk {
-  background-color: #e830e8;
+.evaPre .tileCont {
+  background: url("../img/nodes/evaPre.png") no-repeat center;
 }
 
-.atkPre {
-  background-color: #c91dc9;
+.evaPre.activeNode .tileCont {
+  border-color: #ace600;
 }
 
-.def {
-  background-color: #cccccc;
+.spd .tileCont {
+  background: url("../img/nodes/spd.png") no-repeat center;
 }
 
-.defPre {
-  background-color: #a6a6a6;
+.spd.activeNode .tileCont {
+  border-color: #4dbd28;
+}
+
+.spdPre .tileCont {
+  background: url("../img/nodes/spdPre.png") no-repeat center;
+}
+
+.spdPre.activeNode .tileCont {
+  border-color: #418a28;
+}
+
+.hp .tileCont {
+  background: url("../img/nodes/hp.png") no-repeat center;
+}
+
+.hp.activeNode .tileCont {
+  border-color: #30e8e8;
+}
+
+.hpPre .tileCont {
+  background: url("../img/nodes/hpPre.png") no-repeat center;
+}
+
+.hpPre.activeNode .tileCont {
+  border-color: #14b8b8;
+}
+
+.wis .tileCont {
+  background: url("../img/nodes/wis.png") no-repeat center;
+}
+
+.wis.activeNode .tileCont {
+  border-color: #2559f4;
+}
+
+.wisPre .tileCont {
+  background: url("../img/nodes/wisPre.png") no-repeat center;
+}
+
+.wisPre.activeNode .tileCont {
+  border-color: #1236a1;
+}
+
+.rof .tileCont {
+  background: url("../img/nodes/rof.png") no-repeat center;
+}
+
+.rof.activeNode .tileCont {
+  border-color: #cc667f;
+}
+
+.atk .tileCont {
+  background: url("../img/nodes/atk.png") no-repeat center;
+}
+
+.atk.activeNode .tileCont {
+  border-color: #e830e8;
+}
+
+.atkPre .tileCont {
+  background: url("../img/nodes/atkPre.png") no-repeat center;
+}
+
+.atkPre.activeNode .tileCont {
+  border-color: #c91dc9;
+}
+
+.def .tileCont {
+  background: url("../img/nodes/def.png") no-repeat center;
+}
+
+.def.activeNode .tileCont {
+  border-color: #cccccc;
+}
+
+.defPre .tileCont {
+  background: url("../img/nodes/defPre.png") no-repeat center;
+}
+
+.defPre.activeNode .tileCont {
+  border-color: #a6a6a6;
 }
 
 /*# sourceMappingURL=tree.css.map */

@@ -464,7 +464,7 @@ var tree = {
         },
         c9:{
             type: "spd",
-            val: 2
+            val: 1
         },
         c10:{
             type: "def",
@@ -810,15 +810,15 @@ var tree = {
     r10:{
         c1:{
             type: "wisPre",
-            val: 5
+            val: 2
         },
         c2:{
             type: "wisPre",
-            val: 10
+            val: 4
         },
         c3:{
             type: "wis",
-            val: 5
+            val: 1
         },
         c4:{
             type: "start",
@@ -826,23 +826,23 @@ var tree = {
         },
         c5:{
             type: "wis",
-            val: 3
+            val: 1
         },
         c6:{
             type: "wis",
-            val: 3
+            val: 1
         },
         c7:{
             type: "vit",
-            val: 3
+            val: 1
         },
         c8:{
             type: "vit",
-            val: 10
+            val: 2
         },
         c9:{
             type: "vitPre",
-            val: 10
+            val: 1
         },
         c10:{
             type: "start",
@@ -850,7 +850,7 @@ var tree = {
         },
         c11:{
             type: "hp",
-            val: 5
+            val: 10
         },
         c12:{
             type: "hp",

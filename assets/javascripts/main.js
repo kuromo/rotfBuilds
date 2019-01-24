@@ -431,6 +431,16 @@ function updateStats(){
     var smRuneStats= getSmRuneStats()
     var curClass =  $(".classIcon").attr('data-class')
     var classStats = classes[curClass].stats
+    var gearStats = {
+        hp: 60,
+        mp: 10,
+        atk: 1,
+        def: 36,
+        spd: 1,
+        dex: 12,
+        vit: 6,
+        wis: 1,
+    }
 
     console.log("tStats: ")
     console.log(tStats)
@@ -440,9 +450,11 @@ function updateStats(){
     console.log(classStats)
 
     console.log("stat sum")
-    console.log(sumObjectsByKey([tStats, smRuneStats, classStats]))
+    console.log(sumObjectsByKey([tStats, smRuneStats, classStats/*, gearStats*/]))
 
-    renderStats(sumObjectsByKey([tStats, smRuneStats, classStats]))
+    var endStats= calcIncreases(sumObjectsByKey([tStats, smRuneStats, classStats/*, gearStats*/]))
+
+    renderStats(endStats)
 }
 
 function renderStats(stats){
@@ -454,6 +466,19 @@ function renderStats(stats){
     $("#dexStat .statValue").html(stats.dex)
     $("#vitStat .statValue").html(stats.vit)
     $("#wisStat .statValue").html(stats.wis)
+}
+
+function calcIncreases(stats){
+    var calcStats = {}
+
+    calcStats["atk"] = stats.atk * (1 + stats.atkPre/100)
+    calcStats["def"] = stats.def * (1 + stats.defPre/100)
+    calcStats["spd"] = stats.spd * (1 + stats.spdPre/100)
+    calcStats["dex"] = stats.dex * (1 + stats.dexPre/100)
+    calcStats["vit"] = stats.vit * (1 + stats.vitPre/100)
+    calcStats["wis"] = stats.wis * (1 + stats.wisPre/100)
+
+    return calcStats
 }
 
 function getSmRuneStats(){
