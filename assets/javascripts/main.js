@@ -15,10 +15,9 @@ $(function() {
 
 function toggleSmRune(stat){
     
-    console.log($(".rRuneIcon.active"))
-    var nodeClass = "." + stat+"SmR"
-    console.log($(nodeClass))
-    $(nodeClass).toggleClass("active")
+    $(".smRune[data-stat='" + stat + "']").toggleClass("active")
+
+    updateStats()
 }
 
 
@@ -108,7 +107,7 @@ $(function() {
         }
 
 
-        calcTreeStat()
+        updateStats()
     })
 });
 
@@ -135,7 +134,7 @@ function secStart(newSt){
     if(uncon){
         handleUncon(newSt, uncon, oldSt)
     }
-    calcTreeStat()
+    updateStats()
 }
 
 
@@ -284,7 +283,7 @@ function toggleNodes(nodeIds){
     window.setTimeout(function(){$("#treeModal").remove()},500)
     
 
-    calcTreeStat()
+    updateStats()
 }
 
 function statById(nodeIds){
@@ -384,29 +383,6 @@ TStats.prototype.toModal = function() {
 }
 
 
-function updateStats(stats){
-
-    //update tree stats
-    var str = ""
-
-    for (var stat in stats){
-        var val = stats[stat]
-        if(Number.isInteger(val)&&val !==0){
-            str += stat 
-            str += ":  " 
-            str += val 
-            str += "<br>" 
-        }
-    }
-
-    $("#normalStats").html(str)
-
-
-    //update point counter
-    var aloc = $(".activeNode")
-    $(".ptCount").text(aloc.length)
-}
-
 function calcTreeStat(){ 
     var stats = new TStats()
 
@@ -423,7 +399,7 @@ function calcTreeStat(){
         }
     })
 
-    updateStats(stats)
+    return stats
 }
 
 
@@ -438,7 +414,61 @@ function changeClass(newCls){
     console.log(newCls)
     var imgSrc = "/img/classes/" + newCls + ".png"
     $(".classIcon").attr('src', imgSrc)
+    $(".classIcon").attr('data-class', newCls)
+    
+    $("#classDD").toggleClass("show")
+    $(".classDDBtn:not(.collapsed)").toggleClass("collapsed")
+
+
+
+    updateStats()
 }
+
+
+//___________________Stat Screen_____________________
+function updateStats(){
+    var tStats = calcTreeStat()
+    var smRuneStats= getSmRuneStats()
+    var curClass =  $(".classIcon").attr('data-class')
+    var classStats = classes[curClass].stats
+
+    console.log("tStats: ")
+    console.log(tStats)
+    console.log("smRuneStats: ")
+    console.log(smRuneStats)
+    console.log("classStats: ")
+    console.log(classStats)
+
+    console.log("stat sum")
+    console.log(sumObjectsByKey([tStats, smRuneStats, classStats]))
+
+    renderStats(sumObjectsByKey([tStats, smRuneStats, classStats]))
+}
+
+function renderStats(stats){
+    $("#hpBar").html(stats.hp)
+    $("#mpBar").html(stats.mp)
+    $("#atkStat .statValue").html(stats.atk)
+    $("#defStat .statValue").html(stats.def)
+    $("#spdStat .statValue").html(stats.spd)
+    $("#dexStat .statValue").html(stats.dex)
+    $("#vitStat .statValue").html(stats.vit)
+    $("#wisStat .statValue").html(stats.wis)
+}
+
+function getSmRuneStats(){
+    var stats = {}
+
+    $(".smRune.active").each(function(){
+        stats[$(this).attr("data-stat")] = parseInt($(this).attr("data-value"))
+    })
+    
+    return stats
+}
+
+
+
+
 
 
 
@@ -595,6 +625,16 @@ function hasProp(object) {
         }
     }
     return false;
+}
+
+function sumObjectsByKey(objs) {
+  return objs.reduce(function (a, b) {
+    for(var k in b) {
+      if(b.hasOwnProperty(k))
+        a[k] = (a[k] || 0) + b[k];
+    }
+    return a;
+  }, {});
 }
 
 function createModal(head, body, foot){

@@ -22,28 +22,16 @@ block content
 			#tStatCont.treeSub
 				h3 small runes
 				#smRune
-					button.smRune.btn.btn-default.hpSmR(  onClick="toggleSmRune('hp')" data-type:"hp")
-						img.rRuneIcon(src="img/runes/hp.png")
-					button.smRune.btn.btn-default.mpSmR(  onClick="toggleSmRune('mp')" data-type:"mp")
-						img.rRuneIcon(src="img/runes/mp.png")
-					button.smRune.btn.btn-default.attSmR(  onClick="toggleSmRune('att')" data-type:"att")
-						img.rRuneIcon(src="img/runes/att.png")
-					button.smRune.btn.btn-default.defSmR(  onClick="toggleSmRune('def')" data-type:"def")
-						img.rRuneIcon(src="img/runes/def.png")
-					button.smRune.btn.btn-default.spdSmR(  onClick="toggleSmRune('spd')" data-type:"spd")
-						img.rRuneIcon(src="img/runes/spd.png")
-					button.smRune.btn.btn-default.dexSmR(  onClick="toggleSmRune('dex')" data-type:"dex")
-						img.rRuneIcon(src="img/runes/dex.png")
-					button.smRune.btn.btn-default.vitSmR(  onClick="toggleSmRune('vit')" data-type:"vit")
-						img.rRuneIcon(src="img/runes/vit.png")
-					button.smRune.btn.btn-default.wisSmR(  onClick="toggleSmRune('wis')" data-type:"wis")
-						img.rRuneIcon(src="img/runes/wis.png")
+					each rune, short in sRunes
+						button.smRune.btn.btn-default( onClick="toggleSmRune('#{ short }')" data-stat="#{ short }" data-value="#{ rune.value }")
+							img.rRuneIcon(src="img/runes/#{ short }.png")
+					
 				h3 big runes
 				#bigRunes
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeRedDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.rRuneIcon(src="img/runes/rHolder.png")
-						#runeRedDD.dropdown-menu.runeDD(role="menu" aria-labelledby="classDDBtn")
+						#runeRedDD.dropdown-menu.runeDD(role="menu")
 							each rune, short in bRunes
 								if(rune.color == "red")
 									.runeDDItem(role="menuitem" onClick="") 
@@ -52,7 +40,7 @@ block content
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeGreenDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.gRuneIcon(src="img/runes/gHolder.png")
-						#runeGreenDD.dropdown-menu.runeDD(role="menu" aria-labelledby="classDDBtn")
+						#runeGreenDD.dropdown-menu.runeDD(role="menu")
 							each rune, short in bRunes
 								if(rune.color == "green")
 									.runeDDItem(role="menuitem" onClick="") 
@@ -61,7 +49,7 @@ block content
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeBlueDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.bRuneIcon(src="img/runes/bHolder.png")
-						#runeBlueDD.dropdown-menu.runeDD(role="menu" aria-labelledby="classDDBtn")
+						#runeBlueDD.dropdown-menu.runeDD(role="menu")
 							each rune, short in bRunes
 								if(rune.color == "blue")
 									.runeDDItem(role="menuitem" onClick="") 
@@ -70,14 +58,14 @@ block content
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeAllDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.aRuneIcon(src="img/runes/aHolder.png")
-						#runeAllDD.dropdown-menu.dropdown-menu-right.runeDD(role="menu" aria-labelledby="classDDBtn")
+						#runeAllDD.dropdown-menu.dropdown-menu-right.runeDD(role="menu")
 							each rune, short in bRunes
 								.runeDDItem(role="menuitem" onClick="") 
 									img(src="img/runes/#{ short }.png") 
 									.runeName #{ rune.name }
 				h3 character stats							
 				#charFrame
-					.dropdown.classSec
+					.dropdown.classSel
 						button.btn.btn-default.dropdown-toggle.classDDBtn.collapsed(type="button" data-toggle="collapse" data-target="#classDD" aria-controls="navbarDropdown" aria-expanded="false")
 							img.classIcon(src="img/classes/holder.png")
 						#classDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
@@ -85,6 +73,58 @@ block content
 									.classDDItem(role="menuitem" onClick="changeClass('#{ cName }')")
 										img(src="img/classes/#{ cName }.png") 
 										.className #{ cName }
-					#normalStats
+					#equipSlots
+						.dropdown.weaponSlot
+							button.btn.btn-default.dropdown-toggle.weaponDDBtn.collapsed(type="button" data-toggle="collapse" data-target="#weaponDD" aria-controls="navbarDropdown" aria-expanded="false")
+								img.weaponIcon(src="img/weapon.png")
+							#weaponDD.dropdown-menu(role="menu" aria-labelledby="weaponDDBtn")
+										.weaponDDItem.equipDDItem(role="menuitem" onClick="")
+											img(src="img/weapon.png") 
+											.weaponName Weapon
+						.dropdown.abilitySlot
+							button.btn.btn-default.dropdown-toggle.abilityDDBtn.collapsed(type="button" data-toggle="collapse" data-target="#abilityDD" aria-controls="navbarDropdown" aria-expanded="false")
+								img.abilityIcon(src="img/ability.png")
+							#abilityDD.dropdown-menu(role="menu" aria-labelledby="classDDBtn")
+										.abilityDDItem.equipDDItem(role="menuitem" onClick="")
+											img(src="img/ability.png") 
+											.abilityName Ability
+						.dropdown.armorSlot
+							button.btn.btn-default.dropdown-toggle.armorDDBtn.collapsed(type="button" data-toggle="collapse" data-target="#armorDD" aria-controls="navbarDropdown" aria-expanded="false")
+								img.armorIcon(src="img/armor.png")
+							#armorDD.dropdown-menu(role="menu" aria-labelledby="armorDDBtn")
+										.armorDDItem.equipDDItem(role="menuitem" onClick="")
+											img(src="img/armor.png") 
+											.armorName armor
+						.dropdown.ringSlot
+							button.btn.btn-default.dropdown-toggle.ringDDBtn.collapsed(type="button" data-toggle="collapse" data-target="#ringDD" aria-controls="navbarDropdown" aria-expanded="false")
+								img.ringIcon(src="img/ring.png")
+							#ringDD.dropdown-menu(role="menu" aria-labelledby="ringDDBtn")
+										.ringDDItem.equipDDItem(role="menuitem" onClick="")
+											img(src="img/ring.png") 
+											.ringName Ring
+															
+				#normalStats
+					#hpBar.statBar 0
+					#mpBar.statBar 0
+					#mainStats
+						#atkStat
+							span.statLabel Atk : 
+							span.statValue 0
+						#defStat
+							span.statLabel Def : 
+							span.statValue 0
+						#spdStat
+							span.statLabel Spd : 
+							span.statValue 0
+						#dexStat
+							span.statLabel Dex : 
+							span.statValue 0
+						#vitStat
+							span.statLabel Vit : 
+							span.statValue 0
+						#wisStat
+							span.statLabel Wis : 
+							span.statValue 0
 
+				h3 advanced stats	
 				#advancedStats

@@ -12,6 +12,7 @@ module.exports.controller = function(app) {
 		opt.treeDesc = "allocate points and check your power",
 		opt.points = 0
 		opt.bRunes = bRunes
+		opt.sRunes = sRunes
 		opt.classes = classes
 
 		BC.getTree(res, 'tree', opt)
@@ -20,6 +21,41 @@ module.exports.controller = function(app) {
 
 
 	});
+}
+
+var sRunes = {
+	hp:{
+		name: "Mini Health",
+		value: 30
+	},
+	mp:{
+		name: "Mini Magic",
+		value: 30
+	},
+	atk:{
+		name: "Mini Strength",
+		value: 3
+	},
+	def:{
+		name: "Mini Protection",
+		value: 3
+	},
+	spd:{
+		name: "Mini Mobility",
+		value: 3
+	},
+	dex:{
+		name: "Mini Precision",
+		value: 3
+	},
+	vit:{
+		name: "Mini Spirit",
+		value: 3
+	},
+	wis:{
+		name: "Mini Enlightenment",
+		value: 3
+	}
 }
 
 var bRunes = {
@@ -96,146 +132,215 @@ var bRunes = {
 		color: "blue"
 	}
 }
-
 var classes = {
 	archer: {
-		hp: 700,
-		mp: 252,
-		att: 75,
-		def: 25,
-		spd: 50,
-		dex: 50,
-		vit: 40,
-		wis: 50
+		stats:{
+			hp: 700,
+			mp: 252,
+			atk: 75,
+			def: 25,
+			spd: 50,
+			dex: 50,
+			vit: 40,
+			wis: 50
+		},
+		weapon:"bow",
+		armor:"leather",
+		ability:"quiver"
 	},
 	assassin: {
-		hp: 700,
-		mp: 278,
-		att: 65,
-		def: 20,
-		spd: 80,
-		dex: 75,
-		vit: 35,
-		wis: 70
+		stats:{
+			hp: 700,
+			mp: 278,
+			atk: 65,
+			def: 20,
+			spd: 80,
+			dex: 75,
+			vit: 35,
+			wis: 70
+		},
+		weapon:"dagger",
+		armor:"leather",
+		ability:"poison"
 	},
 	huntress: {
-		hp: 700,
-		mp: 252,
-		att: 75,
-		def: 25,
-		spd: 50,
-		dex: 50,
-		vit: 40,
-		wis: 50
+		stats:{
+			hp: 700,
+			mp: 252,
+			atk: 75,
+			def: 25,
+			spd: 50,
+			dex: 50,
+			vit: 40,
+			wis: 50
+		},
+		weapon:"bow",
+		armor:"leather",
+		ability:"trap"
 	},
 	knight: {
-		hp: 855,
-		mp: 252,
-		att: 50,
-		def: 40,
-		spd: 50,
-		dex: 50,
-		vit: 75,
-		wis: 50
+		stats:{
+			hp: 855,
+			mp: 252,
+			atk: 50,
+			def: 40,
+			spd: 50,
+			dex: 50,
+			vit: 75,
+			wis: 50
+		},
+		weapon:"sword",
+		armor:"plate",
+		ability:"shield"
 	},
 	mystic: {
-		hp: 670,
-		mp: 385,
-		att: 60,
-		def: 25,
-		spd: 60,
-		dex: 80,
-		vit: 40,
-		wis: 75
+		stats:{
+			hp: 670,
+			mp: 385,
+			atk: 60,
+			def: 25,
+			spd: 60,
+			dex: 80,
+			vit: 40,
+			wis: 75
+		},
+		weapon:"staff",
+		armor:"cloth",
+		ability:"orb"
 	},
 	necromancer: {
-		hp: 670,
-		mp: 385,
-		att: 75,
-		def: 25,
-		spd: 50,
-		dex: 60,
-		vit: 30,
-		wis: 75
+		stats:{
+			hp: 670,
+			mp: 385,
+			atk: 75,
+			def: 25,
+			spd: 50,
+			dex: 60,
+			vit: 30,
+			wis: 75
+		},
+		weapon:"staff",
+		armor:"cloth",
+		ability:"skull"
 	},
 	ninja: {
-		hp: 770,
-		mp: 252,
-		att: 70,
-		def: 25,
-		spd: 60,
-		dex: 70,
-		vit: 45,
-		wis: 70
+		stats:{
+			hp: 770,
+			mp: 252,
+			atk: 70,
+			def: 25,
+			spd: 60,
+			dex: 70,
+			vit: 45,
+			wis: 70
+		},
+		weapon:"katana",
+		armor:"leather",
+		ability:"star"
 	},
 	paladin: {
-		hp: 855,
-		mp: 252,
-		att: 50,
-		def: 35,
-		spd: 55,
-		dex: 45,
-		vit: 40,
-		wis: 75
+		stats:{
+			hp: 855,
+			mp: 252,
+			atk: 50,
+			def: 35,
+			spd: 55,
+			dex: 45,
+			vit: 40,
+			wis: 75
+		},
+		weapon:"sword",
+		armor:"plate",
+		ability:"seal"
 	},
 	priest: {
-		hp: 670,
-		mp: 385,
-		att: 55,
-		def: 25,
-		spd: 55,
-		dex: 60,
-		vit: 40,
-		wis: 75
+		stats:{
+			hp: 670,
+			mp: 385,
+			atk: 55,
+			def: 25,
+			spd: 55,
+			dex: 60,
+			vit: 40,
+			wis: 75
+		},
+		weapon:"wand",
+		armor:"cloth",
+		ability:"tome"
 	},
 	rogue: {
-		hp: 720,
-		mp: 252,
-		att: 60,
-		def: 25,
-		spd: 75,
-		dex: 75,
-		vit: 40,
-		wis: 50
+		stats:{
+			hp: 720,
+			mp: 252,
+			atk: 60,
+			def: 25,
+			spd: 75,
+			dex: 75,
+			vit: 40,
+			wis: 50
+		},
+		weapon:"dagger",
+		armor:"leather",
+		ability:"cloak"
 	},
 	sorcerer: {
-		hp: 670,
-		mp: 385,
-		att: 70,
-		def: 25,
-		spd: 60,
-		dex: 60,
-		vit: 75,
-		wis: 75
+		stats:{
+			hp: 670,
+			mp: 385,
+			atk: 70,
+			def: 25,
+			spd: 60,
+			dex: 60,
+			vit: 75,
+			wis: 75
+		},
+		weapon:"wand",
+		armor:"cloth",
+		ability:"scepter"
 	},
 	trickster: {
-		hp: 720,
-		mp: 252,
-		att: 80,
-		def: 25,
-		spd: 75,
-		dex: 70,
-		vit: 50,
-		wis: 60
+		stats:{
+			hp: 720,
+			mp: 252,
+			atk: 80,
+			def: 25,
+			spd: 75,
+			dex: 70,
+			vit: 50,
+			wis: 60
+		},
+		weapon:"dagger",
+		armor:"leather",
+		ability:"prism"
 	},
 	warrior: {
-		hp: 855,
-		mp: 252,
-		att: 75,
-		def: 30,
-		spd: 50,
-		dex: 50,
-		vit: 75,
-		wis: 50
+		stats:{
+			hp: 855,
+			mp: 252,
+			atk: 75,
+			def: 30,
+			spd: 50,
+			dex: 50,
+			vit: 75,
+			wis: 50
+		},
+		weapon:"sword",
+		armor:"plate",
+		ability:"helmet"
 	},
 	wizard: {
-		hp: 670,
-		mp: 385,
-		att: 75,
-		def: 25,
-		spd: 50,
-		dex: 75,
-		vit: 40,
-		wis: 60
+		stats:{
+			hp: 670,
+			mp: 385,
+			atk: 75,
+			def: 25,
+			spd: 50,
+			dex: 75,
+			vit: 40,
+			wis: 60
+		},
+		weapon:"staff",
+		armor:"cloth",
+		ability:"spell"			
 	}
 }

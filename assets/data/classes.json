@@ -3,7 +3,7 @@ var classes = {
 		stats:{
 			hp: 700,
 			mp: 252,
-			att: 75,
+			atk: 75,
 			def: 25,
 			spd: 50,
 			dex: 50,
@@ -18,7 +18,7 @@ var classes = {
 		stats:{
 			hp: 700,
 			mp: 278,
-			att: 65,
+			atk: 65,
 			def: 20,
 			spd: 80,
 			dex: 75,
@@ -33,7 +33,7 @@ var classes = {
 		stats:{
 			hp: 700,
 			mp: 252,
-			att: 75,
+			atk: 75,
 			def: 25,
 			spd: 50,
 			dex: 50,
@@ -48,7 +48,7 @@ var classes = {
 		stats:{
 			hp: 855,
 			mp: 252,
-			att: 50,
+			atk: 50,
 			def: 40,
 			spd: 50,
 			dex: 50,
@@ -63,7 +63,7 @@ var classes = {
 		stats:{
 			hp: 670,
 			mp: 385,
-			att: 60,
+			atk: 60,
 			def: 25,
 			spd: 60,
 			dex: 80,
@@ -78,7 +78,7 @@ var classes = {
 		stats:{
 			hp: 670,
 			mp: 385,
-			att: 75,
+			atk: 75,
 			def: 25,
 			spd: 50,
 			dex: 60,
@@ -93,7 +93,7 @@ var classes = {
 		stats:{
 			hp: 770,
 			mp: 252,
-			att: 70,
+			atk: 70,
 			def: 25,
 			spd: 60,
 			dex: 70,
@@ -108,7 +108,7 @@ var classes = {
 		stats:{
 			hp: 855,
 			mp: 252,
-			att: 50,
+			atk: 50,
 			def: 35,
 			spd: 55,
 			dex: 45,
@@ -123,7 +123,7 @@ var classes = {
 		stats:{
 			hp: 670,
 			mp: 385,
-			att: 55,
+			atk: 55,
 			def: 25,
 			spd: 55,
 			dex: 60,
@@ -138,7 +138,7 @@ var classes = {
 		stats:{
 			hp: 720,
 			mp: 252,
-			att: 60,
+			atk: 60,
 			def: 25,
 			spd: 75,
 			dex: 75,
@@ -153,7 +153,7 @@ var classes = {
 		stats:{
 			hp: 670,
 			mp: 385,
-			att: 70,
+			atk: 70,
 			def: 25,
 			spd: 60,
 			dex: 60,
@@ -168,7 +168,7 @@ var classes = {
 		stats:{
 			hp: 720,
 			mp: 252,
-			att: 80,
+			atk: 80,
 			def: 25,
 			spd: 75,
 			dex: 70,
@@ -183,7 +183,7 @@ var classes = {
 		stats:{
 			hp: 855,
 			mp: 252,
-			att: 75,
+			atk: 75,
 			def: 30,
 			spd: 50,
 			dex: 50,
@@ -198,7 +198,7 @@ var classes = {
 		stats:{
 			hp: 670,
 			mp: 385,
-			att: 75,
+			atk: 75,
 			def: 25,
 			spd: 50,
 			dex: 75,

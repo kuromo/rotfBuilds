@@ -7,7 +7,7 @@ var sRunes = {
 		name: "Mini Magic",
 		value: 30
 	},
-	att:{
+	atk:{
 		name: "Mini Strength",
 		value: 3
 	},
