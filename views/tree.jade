@@ -6,6 +6,10 @@ block content
 			h1 #{ treeTitle }
 			h3 
 				p #{ treeDesc }
+				p
+					button#saveBtn.btn.btn-default.btn-secondary(onClick="saveTree()") Save
+					input#loadTxt.form-controll(type="text")
+					button#loadBtn.btn.btn-default.btn-secondary(onClick="loadTree()") Load
 				span.ptCount #{ points } 
 				span /82
 

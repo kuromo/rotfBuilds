@@ -59,6 +59,26 @@ function getTree(){
     })
 }
 
+function saveTree(){
+    var nodes = []
+    $(".activeNode").each(function(){
+        nodes.push($(this).attr("data-id"))
+    })
+
+    console.log(nodes)
+}
+
+function loadTree(){
+    
+    var nodes = eval($("#loadTxt").val())
+
+    $(".activeNode").toggleClass("activeNode")
+
+    for(var x in nodes){
+        $(".tile[data-id=" + nodes[x] + "]").toggleClass("activeNode")
+    }
+}
+
 $(function() {
     $(".tile").click(function(){
         console.log(this)
@@ -432,7 +452,7 @@ function updateStats(){
     var tStats = calcTreeStat()
     var smRuneStats= getSmRuneStats()
     var curClass =  $(".classIcon").attr('data-class')
-    var classStats = classes[curClass].stats
+    var classStats = (curClass) ? classes[curClass].stats : {}
     var gearStats = {
         hp: 60,
         mp: 10,
@@ -450,13 +470,15 @@ function updateStats(){
     console.log(smRuneStats)
     console.log("classStats: ")
     console.log(classStats)
+   /* console.log("stat sum")
+    console.log(sumObjectsByKey([tStats, smRuneStats, classStats, gearStats]))*/
 
-    console.log("stat sum")
-    console.log(sumObjectsByKey([tStats, smRuneStats, classStats/*, gearStats*/]))
+    var withPre = calcIncreases(sumObjectsByKey([tStats.getPre(), smRuneStats, classStats/*, gearStats*/]))
+    var withFlat = sumObjectsByKey([tStats.getFlat(), withPre])
 
-    var endStats= calcIncreases(sumObjectsByKey([tStats, smRuneStats, classStats/*, gearStats*/]))
+    //var endStats= calcIncreases(sumObjectsByKey([tStats, smRuneStats, classStats/*, gearStats*/]))
 
-    renderStats(endStats)
+    renderStats(withFlat)
 }
 
 function renderStats(stats){
