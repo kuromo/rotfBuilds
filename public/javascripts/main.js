@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-24
+/*! rotfBuilds - v0.0.0 - 2019-01-26
 * Copyright (c) 2019 ;*/
 //GLOBALS
 var gSrv = "http://localhost:3000/"
@@ -453,7 +453,9 @@ function updateStats(){
     var smRuneStats= getSmRuneStats()
     var curClass =  $(".classIcon").attr('data-class')
     var classStats = (curClass) ? classes[curClass].stats : {}
-    var gearStats = {
+    var gearStats = getGearStats()
+
+    /*var gearStats = {
         hp: 60,
         mp: 10,
         atk: 1,
@@ -462,7 +464,7 @@ function updateStats(){
         dex: 12,
         vit: 6,
         wis: 1,
-    }
+    }*/
 
     console.log("tStats: ")
     console.log(tStats)
@@ -473,12 +475,13 @@ function updateStats(){
    /* console.log("stat sum")
     console.log(sumObjectsByKey([tStats, smRuneStats, classStats, gearStats]))*/
 
-    var withPre = calcIncreases(sumObjectsByKey([tStats.getPre(), smRuneStats, classStats/*, gearStats*/]))
+    var withPre = calcIncreases(sumObjectsByKey([gearStats, tStats.getPre(), smRuneStats, classStats]))
     var withFlat = sumObjectsByKey([tStats.getFlat(), withPre])
 
     //var endStats= calcIncreases(sumObjectsByKey([tStats, smRuneStats, classStats/*, gearStats*/]))
 
     renderStats(withFlat)
+    calcAdvStats(withFlat)
 }
 
 function renderStats(stats){
@@ -493,16 +496,18 @@ function renderStats(stats){
 }
 
 function calcIncreases(stats){
-    var calcStats = {}
+   
 
-    calcStats["atk"] = stats.atk * (1 + stats.atkPre/100)
-    calcStats["def"] = stats.def * (1 + stats.defPre/100)
-    calcStats["spd"] = stats.spd * (1 + stats.spdPre/100)
-    calcStats["dex"] = stats.dex * (1 + stats.dexPre/100)
-    calcStats["vit"] = stats.vit * (1 + stats.vitPre/100)
-    calcStats["wis"] = stats.wis * (1 + stats.wisPre/100)
+    stats["hp"] = stats.hp * (1 + stats.hpPre/100)
+    stats["mp"] = stats.mp * (1 + stats.mpPre/100)
+    stats["atk"] = stats.atk * (1 + stats.atkPre/100)
+    stats["def"] = stats.def * (1 + stats.defPre/100)
+    stats["spd"] = stats.spd * (1 + stats.spdPre/100)
+    stats["dex"] = stats.dex * (1 + stats.dexPre/100)
+    stats["vit"] = stats.vit * (1 + stats.vitPre/100)
+    stats["wis"] = stats.wis * (1 + stats.wisPre/100)
 
-    return calcStats
+    return stats
 }
 
 function getSmRuneStats(){
@@ -515,7 +520,55 @@ function getSmRuneStats(){
     return stats
 }
 
+function getGearStats(){
+    var stats = {}
+    stats["hp"] = parseInt($("#hpTxt").val())
+    stats["mp"] = parseInt($("#mpTxt").val())
+    stats["atk"] = parseInt($("#atkTxt").val())
+    stats["def"] = parseInt($("#defTxt").val())
+    stats["spd"] = parseInt($("#spdTxt").val())
+    stats["dex"] = parseInt($("#dexTxt").val())
+    stats["vit"] = parseInt($("#vitTxt").val())
+    stats["wis"] = parseInt($("#wisTxt").val())
+    stats["avgDmg"] = (parseInt($("#minDmgTxt").val()) + parseInt($("#maxDmgTxt").val()) - 1) / 2
+    stats["shots"] = parseInt($("#shotsTxt").val())
+    stats["rof"] = parseInt($("#rofTxt").val()) -100
+ 
+    return stats
+}
 
+function calcAdvStats(stats){
+    var advStats = {}
+    advStats["hpps"] = 1 + 0.12 * stats.vit
+    advStats["mpps"] = 0.5 + 0.06 * stats.wis
+    advStats["defCap"] = stats.def + stats.def / 85 * 15
+    advStats["tps"] = 4 + 5.6 * (stats.spd / 75)
+
+
+    advStats["dexAps"] = 1.5 + 6.5 * (stats.dex / 75)
+    advStats["aps"] = advStats.dexAps * (1 + stats.rof/100)
+    advStats["atkMulti"] = 1.5 + 6.5 * (stats.dex / 75)
+
+    advStats["dps"] = (stats.avgDmg * advStats.atkMulti * stats.shots) * advStats.aps
+    
+    //((Avg Damage  * atkMulti * Number of Shots) * (dexAps * rof))
+
+
+
+    console.log("advStats")
+    console.log(advStats)
+    renderAdvStats(advStats)
+}
+
+function renderAdvStats(stats){
+    $("#hppsStat .statValue").html(stats.hpps)
+    $("#mppsStat .statValue").html(stats.mpps)
+    $("#defCapStat .statValue").html(stats.defCap)
+    $("#tpsStat .statValue").html(stats.tps)
+    $("#dexApsStat .statValue").html(stats.dexAps)
+    $("#apsStat .statValue").html(stats.aps)
+    $("#dpsStat .statValue").html(stats.dps)
+}
 
 
 

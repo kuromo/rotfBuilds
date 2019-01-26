@@ -109,6 +109,47 @@ block content
 											.ringName Ring
 															
 				#normalStats
+					button.btn.btn-primary(type="button" data-toggle="collapse" data-target="#equipStatCollapse" aria-expanded="false") GearStats
+					#equipStatCollapse.collapse 
+						.card.card-body#equipStatCont
+							.equipStat
+								label Hp: 
+								input#hpTxt.form-controll(type="text")
+							.equipStat
+								label Mp: 
+								input#mpTxt.form-controll(type="text")
+							.equipStat
+								label Atk: 
+								input#atkTxt.form-controll(type="text")
+							.equipStat
+								label Def: 
+								input#defTxt.form-controll(type="text")
+							.equipStat
+								label Spd: 
+								input#spdTxt.form-controll(type="text")
+							.equipStat
+								label Dex: 
+								input#dexTxt.form-controll(type="text")
+							.equipStat
+								label Vit: 
+								input#vitTxt.form-controll(type="text")
+							.equipStat
+								label Wis: 
+								input#wisTxt.form-controll(type="text")
+							b.wepStatTitle Weapon Stats
+							.equipStat
+								label minDmg: 
+								input#minDmgTxt.form-controll(type="text")
+							.equipStat
+								label maxDmg: 
+								input#maxDmgTxt.form-controll(type="text")
+							.equipStat
+								label shots: 
+								input#shotsTxt.form-controll(type="text")
+							.equipStat
+								label rof: 
+								input#rofTxt.form-controll(type="text")
+
 					#hpBar.statBar 0
 					#mpBar.statBar 0
 					#mainStats
@@ -133,3 +174,24 @@ block content
 
 				h3 advanced stats	
 				#advancedStats
+				#hppsStat
+					span.statLabel hpps : 
+					span.statValue 0
+				#mppsStat
+					span.statLabel mpps : 
+					span.statValue 0
+				#defCapStat
+					span.statLabel defCap : 
+					span.statValue 0
+				#tpsStat
+					span.statLabel tps : 
+					span.statValue 0
+				#dexApsStat
+					span.statLabel dexAps : 
+					span.statValue 0
+				#apsStat
+					span.statLabel aps : 
+					span.statValue 0
+				#dpsStat
+					span.statLabel dps : 
+					span.statValue 0

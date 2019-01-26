@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-24
+/*! rotfBuilds - v0.0.0 - 2019-01-26
 * Copyright (c) 2019 ;*/
 .row {
   margin: 0;
@@ -257,6 +257,39 @@ section {
 }
 
 #mainStats div {
+  flex: 1 50%;
+  text-align: center;
+}
+
+#equipStatCont {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  max-width: 400px;
+}
+
+.equipStat {
+  flex: 1 auto;
+}
+
+.equipStat input {
+  max-width: 100px;
+}
+
+.wepStatTitle {
+  flex: 1 100%;
+}
+
+#advancedStats {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-left: 20px;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+#advancedStats div {
   flex: 1 50%;
   text-align: center;
 }
