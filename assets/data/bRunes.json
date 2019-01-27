@@ -1,74 +1,181 @@
 var bRunes = {
 	perf : {
 		name: "Perfectionist", 
-		color: "red"
+		color: "red",
+		stats:{
+			
+		},
+		special: true,
+		imune: []
 	},
 	consi : {
 		name: "Consistent Onslaugh", 
-		color: "red"
+		color: "red",
+		stats:{
+			
+		},
+		special: true,
+		imune: ["dmging, weak"]
 	},
 	mana : {
 		name: "Mana Hunger", 
-		color: "red"
+		color: "red",
+		stats:{
+			mReg: -95,
+			dex: -12
+		},
+		special: true,
+		imune: []
 	},
 	narr : {
 		name: "Narrow Sighted Magic", 
-		color: "red"
+		color: "red",
+		stats:{
+			mReg: -75
+		},
+		special: true,
+		imune: []
 	},
 	aggr : {
 		name: "Aggressive Aggitator", 
-		color: "red"
+		color: "red",
+		stats:{
+			atkPre: 75,
+			dexPre: -50,
+			spdPre: -15,
+			rof: -10
+		},
+		special: false,
+		imune: ["bers"]
 	},
 	adre : {
 		name: "Adrenaline Rush", 
-		color: "red"
+		color: "red",
+		stats:{
+			
+		},
+		special: true,
+		imune: []
 	},
 	regen: {
 		name: "Regeneration of the Brute",
-		color: "green"
+		color: "green",
+		stats:{
+			hReg: 115,
+			mReg: -60
+		},
+		special: false,
+		imune: []
 	},
 	bid: {
 		name: "Biding Time",
-		color: "green"
+		color: "green",
+		stats:{
+			defPre: 50,
+			hReg: -30,
+			mReg: -30
+		},
+		special: false,
+		imune: ["aBreak"]
 	},
 	arca: {
 		name: "Arcane Surge",
-		color: "green"
+		color: "green",
+		stats:{
+			mReg: 135,
+			hReg: -50
+		},
+		special: false,
+		imune: []
 	},
 	blood: {
 		name: "Blood Pact",
-		color: "green"
+		color: "green",
+		stats:{
+			hReg: 85
+		},
+		special: true,
+		imune: []
 	},
 	bulw: {
 		name: "Bulwark of the Surgeon",
-		color: "green"
+		color: "green",
+		stats:{
+			hmPre: 250,
+			spdPre: -30,
+			dexPre: -50,
+			atkPre: -30
+		},
+		special: true,
+		imune: []
 	},
 	bliss: {
 		name: "Blissful Ignorance",
-		color: "green"
+		color: "green",
+		stats:{
+			atkPre: -10,
+			defPre: -10,
+			spdPre: -10,
+			dexPre: -10,
+			vitPre: -10,
+			wisPre: -10
+		},
+		special: false,
+		imune: ["all"]
 	},
 	resto : {
 		name: "Restoration Temptation",
-		color: "blue"
+		color: "blue",
+		stats:{
+			hReg: 72,
+			mReg: 72
+		},
+		special: true,
+		imune: []
 	},
 	pot : {
 		name: "Pot Head",
-		color: "blue"
+		color: "blue",
+		stats:{
+			
+		},
+		special: true,
+		imune: []
 	},
 	solo : {
 		name: "Solo Thief",
-		color: "blue"
+		color: "blue",
+		stats:{
+			
+		},
+		special: true,
+		imune: []
 	},
 	eye : {
 		name: "Eye for an Eye"	,
-		color: "blue"
+		color: "blue",
+		stats:{
+			
+		},
+		special: true,
+		imune: []
 	},
 	dread : {
 		name: "Dreadstump's Greed",
-		color: "blue"
+		color: "blue",
+		stats:{
+			
+		},
+		special: true,
+		imune: []
 	},
 	rare : {
 		name: "Rare Obsession",
-		color: "blue"
+		color: "blue",
+		stats:{
+			
+		},
+		special: true,
+		imune: []
 	}
 }

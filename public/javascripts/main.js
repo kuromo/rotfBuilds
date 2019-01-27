@@ -1,4 +1,4 @@
-/*! rotfBuilds - v0.0.0 - 2019-01-26
+/*! rotfBuilds - v0.0.0 - 2019-01-27
 * Copyright (c) 2019 ;*/
 //GLOBALS
 var gSrv = "http://localhost:3000/"
@@ -22,8 +22,63 @@ function toggleSmRune(stat){
     updateStats()
 }
 
+function getSmRuneStats(){
+    var stats = {}
+
+    $(".smRune.active").each(function(){
+        stats[$(this).attr("data-stat")] = parseInt($(this).attr("data-value"))
+    })
+    
+    return stats
+}
+
+function changeBRune(runeDD, newRune){
+    var imgSrc = "/img/runes/" + newRune + ".png"
+    $(".rune" + runeDD + "Icon").attr('src', imgSrc)
+    $(".rune" + runeDD + "Icon").attr('data-rune', newRune)
+    
+    $("#rune" + runeDD + "DD").toggleClass("show")
+    $("." + runeDD + "DDBtn:not(.collapsed)").toggleClass("collapsed")
 
 
+
+    updateStats()
+}
+
+function getBRuneStats(){
+    var rRune  =  $(".runeRedIcon").attr('data-rune')
+    var rRuneStats  = (rRune) ? bRunes[rRune].stats : {}
+    var gRune  =  $(".runeGreenIcon").attr('data-rune')
+    var gRuneStats  = (gRune) ? bRunes[gRune].stats : {}
+    var bRune  =  $(".runeBlueIcon").attr('data-rune')
+    var bRuneStats  = (bRune) ? bRunes[bRune].stats : {}
+    var aRune  =  $(".runeAllIcon").attr('data-rune')
+    var aRuneStats  = (aRune) ? bRunes[aRune].stats : {}
+
+    var stats = sumObjectsByKey([rRuneStats, gRuneStats, bRuneStats, aRuneStats])
+
+    console.log("bNode stats:")
+    console.log(stats)
+
+    if(rRune && bRunes[rRune].special){
+        console.log("rRune special")
+        console.log(bRunes[rRune].special)
+    }
+    if(gRune && bRunes[gRune].special){
+        console.log("gRune special")
+        console.log(bRunes[gRune].special)
+    }
+    if(bRune && bRunes[bRune].special){
+        console.log("bRune special")
+        console.log(bRunes[bRune].special)
+    }
+    if(aRune && bRunes[aRune].special){
+        console.log("aRune special")
+        console.log(bRunes[aRune].special)
+    }
+
+    return stats
+}
 
 
 
@@ -451,6 +506,7 @@ function changeClass(newCls){
 function updateStats(){
     var tStats = calcTreeStat()
     var smRuneStats= getSmRuneStats()
+    var bRuneStats= getBRuneStats()
     var curClass =  $(".classIcon").attr('data-class')
     var classStats = (curClass) ? classes[curClass].stats : {}
     var gearStats = getGearStats()
@@ -466,7 +522,7 @@ function updateStats(){
         wis: 1,
     }*/
 
-    console.log("tStats: ")
+    /*console.log("tStats: ")
     console.log(tStats)
     console.log("smRuneStats: ")
     console.log(smRuneStats)
@@ -475,7 +531,7 @@ function updateStats(){
    /* console.log("stat sum")
     console.log(sumObjectsByKey([tStats, smRuneStats, classStats, gearStats]))*/
 
-    var withPre = calcIncreases(sumObjectsByKey([gearStats, tStats.getPre(), smRuneStats, classStats]))
+    var withPre = calcIncreases(sumObjectsByKey([gearStats, tStats.getPre(), smRuneStats, bRuneStats, classStats]))
     var withFlat = sumObjectsByKey([tStats.getFlat(), withPre])
 
     //var endStats= calcIncreases(sumObjectsByKey([tStats, smRuneStats, classStats/*, gearStats*/]))
@@ -507,16 +563,6 @@ function calcIncreases(stats){
     stats["vit"] = stats.vit * (1 + stats.vitPre/100)
     stats["wis"] = stats.wis * (1 + stats.wisPre/100)
 
-    return stats
-}
-
-function getSmRuneStats(){
-    var stats = {}
-
-    $(".smRune.active").each(function(){
-        stats[$(this).attr("data-stat")] = parseInt($(this).attr("data-value"))
-    })
-    
     return stats
 }
 

@@ -35,37 +35,37 @@ block content
 				#bigRunes
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeRedDD" aria-controls="navbarDropdown" aria-expanded="false")
-							img.rRuneIcon(src="img/runes/rHolder.png")
+							img.runeRedIcon(src="img/runes/rHolder.png")
 						#runeRedDD.dropdown-menu.runeDD(role="menu")
 							each rune, short in bRunes
 								if(rune.color == "red")
-									.runeDDItem(role="menuitem" onClick="") 
+									.runeDDItem(role="menuitem" onClick="changeBRune('Red', '#{ short }')") 
 										img(src="img/runes/#{ short }.png") 
 										.runeName #{ rune.name }
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeGreenDD" aria-controls="navbarDropdown" aria-expanded="false")
-							img.gRuneIcon(src="img/runes/gHolder.png")
+							img.runeGreenIcon(src="img/runes/gHolder.png")
 						#runeGreenDD.dropdown-menu.runeDD(role="menu")
 							each rune, short in bRunes
 								if(rune.color == "green")
-									.runeDDItem(role="menuitem" onClick="") 
+									.runeDDItem(role="menuitem" onClick="changeBRune('Green', '#{ short }')") 
 										img(src="img/runes/#{ short }.png") 
 										.runeName #{ rune.name }
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeBlueDD" aria-controls="navbarDropdown" aria-expanded="false")
-							img.bRuneIcon(src="img/runes/bHolder.png")
+							img.runeBlueIcon(src="img/runes/bHolder.png")
 						#runeBlueDD.dropdown-menu.runeDD(role="menu")
 							each rune, short in bRunes
 								if(rune.color == "blue")
-									.runeDDItem(role="menuitem" onClick="") 
+									.runeDDItem(role="menuitem" onClick="changeBRune('Blue', '#{ short }')") 
 										img(src="img/runes/#{ short }.png") 
 										.runeName #{ rune.name } 
 					.dropdown.runeSel
 						button.btn.btn-default.dropdown-toggle.bigRune.collapsed(type="button" data-toggle="collapse" data-target="#runeAllDD" aria-controls="navbarDropdown" aria-expanded="false")
-							img.aRuneIcon(src="img/runes/aHolder.png")
+							img.runeAllIcon(src="img/runes/aHolder.png")
 						#runeAllDD.dropdown-menu.dropdown-menu-right.runeDD(role="menu")
 							each rune, short in bRunes
-								.runeDDItem(role="menuitem" onClick="") 
+								.runeDDItem(role="menuitem" onClick="changeBRune('All', '#{ short }')") 
 									img(src="img/runes/#{ short }.png") 
 									.runeName #{ rune.name }
 				h3 character stats							

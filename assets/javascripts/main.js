@@ -21,6 +21,19 @@ function toggleSmRune(stat){
 }
 
 
+function changeBRune(runeDD, newRune){
+    var imgSrc = "/img/runes/" + newRune + ".png"
+    $(".rune" + runeDD + "Icon").attr('src', imgSrc)
+    $(".rune" + runeDD + "Icon").attr('data-rune', newRune)
+    
+    $("#rune" + runeDD + "DD").toggleClass("show")
+    $("." + runeDD + "DDBtn:not(.collapsed)").toggleClass("collapsed")
+
+
+
+    updateStats()
+}
+
 
 
 
@@ -505,16 +518,6 @@ function calcIncreases(stats){
     stats["vit"] = stats.vit * (1 + stats.vitPre/100)
     stats["wis"] = stats.wis * (1 + stats.wisPre/100)
 
-    return stats
-}
-
-function getSmRuneStats(){
-    var stats = {}
-
-    $(".smRune.active").each(function(){
-        stats[$(this).attr("data-stat")] = parseInt($(this).attr("data-value"))
-    })
-    
     return stats
 }
 
