@@ -584,7 +584,7 @@ function getGearStats(){
 }
 
 function calcAdvStats(stats){
-    var advStats = {}
+    var advStats = stats
     advStats["hpps"] = 1 + 0.12 * stats.vit
     advStats["mpps"] = 0.5 + 0.06 * stats.wis
     advStats["defCap"] = stats.def + stats.def / 85 * 15
@@ -607,8 +607,14 @@ function calcAdvStats(stats){
 }
 
 function renderAdvStats(stats){
-    $("#hppsStat .statValue").html(stats.hpps)
-    $("#mppsStat .statValue").html(stats.mpps)
+    var hppsWReg = stats.hpps * (1 + (stats.hReg || 0) / 100)
+    var hppsString = hppsWReg + " (" +stats.hpps +")"
+    var mppsWReg = stats.mpps * (1 + (stats.mReg || 0) / 100)
+    var mppsString = mppsWReg + " (" +stats.mpps +")"
+
+    $("#hppsStat .statValue").html(hppsString)
+    $("#mppsStat .statValue").html(mppsString)
+
     $("#defCapStat .statValue").html(stats.defCap)
     $("#tpsStat .statValue").html(stats.tps)
     $("#dexApsStat .statValue").html(stats.dexAps)
