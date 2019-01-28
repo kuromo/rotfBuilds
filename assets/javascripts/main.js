@@ -591,7 +591,7 @@ function calcAdvStats(stats){
 
     advStats["dexAps"] = 1.5 + 6.5 * (stats.dex / 75)
     advStats["aps"] = advStats.dexAps * (1 + stats.rof/100)
-    advStats["atkMulti"] = 1.5 + 6.5 * (stats.dex / 75)
+    advStats["atkMulti"] = 1.5 + 6.5 * (stats.atk / 75)
 
     advStats["dps"] = (stats.avgDmg * advStats.atkMulti * stats.shots) * advStats.aps
     
